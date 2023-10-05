@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const connectToDatabase = require('./configs/setup')
 const foodRoutes = require('./routes/food.routes')
+const adminRoutes = require('./routes/admin.routes')
 
 app.use((req, res, next) => {
     // console.log('Middleware')
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/',foodRoutes)
+app.use('/',adminRoutes)
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
