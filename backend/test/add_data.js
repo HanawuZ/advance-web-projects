@@ -7,9 +7,10 @@ function testAddFood(){
     
     food.save().then((models) => {
         console.log(models)
-        resolve({ message: 'Singn up successfully' });
+        // resolve({ message: 'Singn up successfully' });
     }).catch((err) => {
-        reject(new Error('Cannot insert user to DB!'));
+        console.log(err)
+        // reject(new Error('Cannot insert user to DB!'));
     })
 }
 

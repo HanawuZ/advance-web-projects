@@ -1,9 +1,8 @@
 // getting-started.js
 const mongoose = require('mongoose');
+function connectToDatabase() {
 
-function connectToDatabase(req,res,next) {
-
-    const url = 'mongodb://127.0.0.1:27017/foods'
+    const url = 'mongodb://127.0.0.1:27017/mindgirl'
     const configs = {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -14,10 +13,10 @@ function connectToDatabase(req,res,next) {
     .then(() => {
         console.log('Connected to database...')
         // testAddFood()
-        next()
+        // next()
     }).catch(err => {
         console.log(err)
-        res.status(501).send('Cannot connect to MongoDB');
+        // res.status(501).send('Cannot connect to MongoDB');
     })
 }
 
