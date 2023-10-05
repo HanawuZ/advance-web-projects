@@ -1,6 +1,6 @@
 const Order = require("../models/oders")
 
-async function listOrderFood(req, res, next) {
+async function listOrder(req, res, next) {
     Order.find({})
         .then((result) => {
             res.status(200).json(result)
@@ -39,4 +39,4 @@ async function getOrder(req, res, next) {
         })
 }
 
-module.exports = { listOrderFood, insertOrder,  getOrder }
+module.exports = { listOrder, insertOrder,  getOrder }
