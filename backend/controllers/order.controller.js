@@ -1,6 +1,6 @@
 const Order = require("../models/oders")
 
-async function list_order_food(req, res, next) {
+async function listOrderFood(req, res, next) {
     Order.find({})
         .then((result) => {
             res.status(200).json(result)
@@ -13,7 +13,8 @@ async function list_order_food(req, res, next) {
 async function insertOrder(req, res, next) {
     const sample = new Order({
         orders_id: 1,
-        order_food_id: [{ordered_food_id: 1,ordered_food_id:2}],
+        // order_food_id: [{ordered_food_id: 1}, {ordered_food_id:2}],
+        order_food_id: [1,2],
         total_price: 123,
         table_id: 1
     })
@@ -29,7 +30,7 @@ async function insertOrder(req, res, next) {
 
 async function getOrder(req, res, next) {
     const id = req.params.id
-    Order.findOne({ id: id })
+    Order.findOne({ orders_id: id })
         .then((result) => {
             res.status(200).json(result)
         })
@@ -38,4 +39,4 @@ async function getOrder(req, res, next) {
         })
 }
 
-module.exports = { list_order_food, insertOrder, deleteOrder, getOrder }
+module.exports = { listOrderFood, insertOrder,  getOrder }
