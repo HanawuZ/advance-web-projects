@@ -13,6 +13,7 @@ function connectToDatabase(req,res,next) {
     mongoose.connect(url,configs)
     .then(() => {
         console.log('Connected to database...')
+        // testAddFood()
         next()
     }).catch(err => {
         console.log(err)

@@ -16,7 +16,6 @@ app.use(express.json());
 
 app.use(connectToDatabase)
 
-testAddFood()
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
