@@ -7,4 +7,5 @@ const orders = new Schema({
     table_id: Number,
 })
 
-module.exports = mongoose.module('orders',orders)
+const Orders = mongoose.model('orders', orders);
+module.exports =  Orders;

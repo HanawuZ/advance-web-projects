@@ -7,4 +7,5 @@ const ordered_food = new Schema({
     discription: String,
 })
 
-module.exports = mongoose.module('ordered_food',ordered_food)
+const Ordered_food = mongoose.model('ordered_food', ordered_food);
+module.exports =  Ordered_food;

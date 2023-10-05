@@ -5,4 +5,5 @@ const payments = new Schema({
     order_id: [{ order_id: Number }]
 })
 
-module.exports = mongoose.module('payments',payments)
+const Payments = mongoose.model('payments', payments);
+module.exports = Payments;

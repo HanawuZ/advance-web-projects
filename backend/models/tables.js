@@ -11,4 +11,7 @@ const status = new Schema({
 })
 
 
-module.exports = mongoose.module('tables','status',tables,status)
+const Tables = mongoose.model('tables', tables);
+const Status = mongoose.model('status', status);
+
+module.exports =  {Payments,status};
