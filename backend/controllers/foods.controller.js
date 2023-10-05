@@ -1,4 +1,13 @@
 const Food = require("../models/food")
+async function listFood(req, res, next) {
+    Food.find({})
+        .then((result) => {
+            res.status(200).json(result)
+        })
+        .catch((err) => {
+            res.status(500).json({ message: "Cannot get data" })
+        })
+}
 
 async function insertFood(req, res, next) {
     const sampleFood = new Food({
@@ -25,7 +34,7 @@ async function updateFood(req, res, next) {
         picture: 'google.com/image.png',
     };
 
-    Food.findOneAndUpdate({id:id}, updatedFoodData, { new: true })
+    Food.findOneAndUpdate({ id: id }, updatedFoodData, { new: true })
         .then((result) => {
             if (!result) {
                 return res.status(404).json({ message: 'Food not found' });
@@ -40,7 +49,7 @@ async function updateFood(req, res, next) {
 
 async function deleteFood(req, res, next) {
     const id = req.params.id;
-    Food.findOneAndDelete({id:id})
+    Food.findOneAndDelete({ id: id })
         .then((result) => {
             if (!result) {
                 return res.status(404).json({ message: 'Food not found' });
@@ -65,4 +74,4 @@ async function getFoodByID(req, res, next) {
         })
 }
 
-module.exports = { insertFood, updateFood, deleteFood, getFoodByID }
+module.exports = { insertFood, updateFood, deleteFood, getFoodByID, listFood }
