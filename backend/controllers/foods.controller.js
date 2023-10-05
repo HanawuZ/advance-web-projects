@@ -39,6 +39,18 @@ async function updateFood(req, res, next) {
 }
 
 async function deleteFood(req, res, next) {
+    const id = req.params.id;
+    Food.findOneAndDelete({id:id})
+        .then((result) => {
+            if (!result) {
+                return res.status(404).json({ message: 'Food not found' });
+            }
+            res.status(200).json(result);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).json({ message: 'Internal server error' });
+        });
 
 }
 
