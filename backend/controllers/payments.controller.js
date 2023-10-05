@@ -1,7 +1,7 @@
-const Order = require("../models/oders")
+const Payment = require("../models/payments")
 
-async function list_order_food(req, res, next) {
-    Order.find({})
+async function listPayment(req, res, next) {
+    Payment.find({})
         .then((result) => {
             res.status(200).json(result)
         })
@@ -10,15 +10,13 @@ async function list_order_food(req, res, next) {
         })
 }
 
-async function insertOrder(req, res, next) {
-    const sample = new Order({
-        orders_id: 1,
-        order_food_id: [{ordered_food_id: 1,ordered_food_id:2}],
-        total_price: 123,
-        table_id: 1
+async function insertPayment(req, res, next) {
+    const samplePayment= new Payment({
+        payments_id: "123456",
+        order_id: 1,
     })
 
-    sample.save().then((result) => {
+    samplePayment.save().then((result) => {
         console.log(result)
         res.status(201).json({ message: "Complete add data" })
     }).catch((err) => {
@@ -26,10 +24,9 @@ async function insertOrder(req, res, next) {
     })
 }
 
-
-async function getOrder(req, res, next) {
+async function getPaymentByID(req, res, next) {
     const id = req.params.id
-    Order.findOne({ id: id })
+    Payment.findOne({ id: id })
         .then((result) => {
             res.status(200).json(result)
         })
@@ -38,4 +35,4 @@ async function getOrder(req, res, next) {
         })
 }
 
-module.exports = { list_order_food, insertOrder, deleteOrder, getOrder }
+module.exports = { listPayment,insertPayment, getPaymentByID }

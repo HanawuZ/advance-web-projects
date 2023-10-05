@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const ordered_food = new Schema({
+    ordered_food_id:Number,
     food_id: Number,
     amount: Number,
     discription: String,
