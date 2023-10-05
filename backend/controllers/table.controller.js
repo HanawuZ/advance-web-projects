@@ -23,6 +23,19 @@ async function insertTable(req, res, next) {
     })
 }
 
+async function insertstatus(req, res, next) {
+    const sample_status = new Status({
+        tables_id: 1,
+        status_name: "ไม่ว่าง"
+    })
+    sample_status.save().then((result) => {
+        console.log(result)
+        res.status(201).json({ message: "Complete add data" })
+    }).catch((err) => {
+        res.status(501).json({ message: "Cannot add data" })
+    })
+}
+
 async function updateTable(req, res, next) {
     const id = req.params.id;
 
@@ -56,4 +69,4 @@ async function getTable(req, res, next) {
         })
 }
 
-module.exports = { listTables, insertTable, updateTable, getTable }
+module.exports = { listTables,insertstatus, insertTable, updateTable, getTable }

@@ -9,4 +9,5 @@ const admin = new Schema({
     gender: String,
 });
 
-module.exports = mongoose.module('admin', admin)
+const Admin = mongoose.model('admin', admin);
+module.exports =  Admin;

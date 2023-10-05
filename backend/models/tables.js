@@ -8,6 +8,7 @@ const tables = new Schema({
 })
 
 const status = new Schema({
+    status_id: Number,
     status_name: String
 })
 
@@ -15,4 +16,4 @@ const status = new Schema({
 const Tables = mongoose.model('tables', tables);
 const Status = mongoose.model('status', status);
 
-module.exports =  {Payments,status};
+module.exports =  {Tables,Status};
