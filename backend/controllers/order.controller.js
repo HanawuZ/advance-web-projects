@@ -38,4 +38,4 @@ async function getOrder(req, res, next) {
         })
 }
 
-module.exports = { list_order_food, insertOrder, deleteOrder, getOrder }
+module.exports = { list_order_food, insertOrder, getOrder }
