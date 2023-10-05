@@ -1,5 +1,4 @@
-const Food = require('./models/food');
-
+const Food = require('../models/food');
 function testAddFood(){
     const food = new Food({
         name: 'Chicken',
