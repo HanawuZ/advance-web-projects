@@ -1,3 +1,122 @@
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: "Amatic SC", sans-serif;
+    --font-secondary: "Inter", sans-serif;
+}
+
+/* Colors */
+:root {
+    --color-default: #212529;
+    --color-primary: #ce1212;
+    --color-secondary: #37373f;
+}
+
+/* Smooth scroll behavior */
+:root {
+    scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+    font-family: "Open Sans",
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        "Noto Sans",
+        "Liberation Sans",
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji";;
+    color: var(--color-default);
+}
+
+a {
+    color: #ce1212;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ec2727;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family:"Inter",
+        sans-serif;
+}
+.headfont{
+    font-family: "Amatic SC",
+        sans-serif;
+    font-weight: 800;
+    font-size: 60px;
+}
+/*--------------------------------------------------------------
+# Sections & Section Header
+--------------------------------------------------------------*/
+section {
+    overflow: hidden;
+    padding: 80px 0;
+}
+
+.section-bg {
+    background: url("Food Service (4).png") top left;
+}
+
+.section-header {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.section-header h2 {
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    color: #7f7f90;
+    text-transform: uppercase;
+    font-family: "Open Sans",
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        "Noto Sans",
+        "Liberation Sans",
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+.section-header p {
+    margin: 0;
+    font-size: 60px;
+    font-weight: 800;
+    font-family: "Amatic SC",
+        sans-serif;
+}
+
+.section-header p span {
+    color: #ce1212;
+}
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
 #hero {
     width: 100%;
     height: 75vh;
@@ -20,202 +139,242 @@
     position: relative;
 }
 
-#hero h1 {
-    margin: 0;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 56px;
-    color: #222222;
-    font-family: "Poppins", sans-serif;
+/*--------------------------------------------------------------
+# Breadcrumbs
+--------------------------------------------------------------*/
+.breadcrumbs {
+    padding: 15px 0;
+    background: rgba(55, 55, 63, 0.05);
+    margin-top: 90px;
 }
 
-#hero h1 span {
-    color: #106eea;
+@media (max-width: 575px) {
+    .breadcrumbs {
+        margin-top: 70px;
+    }
 }
 
-#hero h2 {
-    color: #555555;
-    margin: 5px 0 30px 0;
+.breadcrumbs h2 {
     font-size: 24px;
     font-weight: 400;
+    margin: 0;
 }
 
-#hero .btn-get-started {
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 10px 28px;
-    border-radius: 4px;
-    transition: 0.5s;
-    color: #fff;
-    background: #106eea;
-}
-
-#hero .btn-get-started:hover {
-    background: #247cf0;
-}
-
-#hero .btn-watch-video {
-    font-size: 16px;
-    transition: 0.5s;
-    margin-left: 25px;
-    color: #222222;
-    font-weight: 600;
+.breadcrumbs ol {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
 }
 
-#hero .btn-watch-video i {
-    color: #106eea;
-    font-size: 32px;
-    transition: 0.3s;
+.breadcrumbs ol li+li {
+    padding-left: 10px;
+}
+
+.breadcrumbs ol li+li::before {
+    display: inline-block;
+    padding-right: 10px;
+    color: #676775;
+    content: "/";
+}
+
+@media (max-width: 992px) {
+    .breadcrumbs .d-flex {
+        display: block !important;
+    }
+
+    .breadcrumbs h2 {
+        margin-bottom: 10px;
+    }
+
+    .breadcrumbs ol {
+        display: block;
+    }
+
+    .breadcrumbs ol li {
+        display: inline-block;
+    }
+}
+
+/*--------------------------------------------------------------
+# Scroll top button
+--------------------------------------------------------------*/
+.scroll-top {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    right: 15px;
+    bottom: 15px;
+    z-index: 99999;
+    background: #ce1212;
+    width: 44px;
+    height: 44px;
+    border-radius: 50px;
+    transition: all 0.4s;
+}
+
+.scroll-top i {
+    font-size: 24px;
+    color: #fff;
     line-height: 0;
-    margin-right: 8px;
 }
 
-#hero .btn-watch-video:hover {
-    color: #106eea;
+.scroll-top:hover {
+    background: #ec2727;
+    color: #fff;
 }
 
-#hero .btn-watch-video:hover i {
-    color: #3b8af2;
+.scroll-top.active {
+    visibility: visible;
+    opacity: 1;
 }
 
-@media (min-width: 1024px) {
-    #hero {
-        background-attachment: fixed;
-    }
-}
-
-@media (max-width: 768px) {
-    #hero {
-        height: 100vh;
-    }
-
-    #hero h1 {
-        font-size: 28px;
-        line-height: 36px;
-    }
-
-    #hero h2 {
-        font-size: 18px;
-        line-height: 24px;
-        margin-bottom: 30px;
-    }
-
-    #hero .btn-get-started,
-    #hero .btn-watch-video {
-        font-size: 13px;
-    }
-}
-
-@media (max-height: 500px) {
-    #hero {
-        height: 120vh;
-    }
-}
-.featured-services .icon-box {
-    background: url("https://celebratingsweets.com/wp-content/uploads/2023/05/Small-Batch-Vanilla-Cupcakes-9.jpg") top left;
-    padding: 30px;
-    position: relative;
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
     overflow: hidden;
-    /* background: #fff; */
-    box-shadow: 0 0 29px 0 rgba(68, 88, 144, 0.12);
-    transition: all 0.3s ease-in-out;
-    border-radius: 8px;
-    z-index: 1;
+    background: #fff;
+    transition: all 0.6s ease-out;
+    width: 100%;
+    height: 100vh;
 }
 
-.featured-services .icon-box::before {
+#preloader:before,
+#preloader:after {
     content: "";
     position: absolute;
-    /* background: #cbe0fb; */
-    right: 0;
-    left: 0;
-    bottom: 0;
-    top: 100%;
-    transition: all 0.3s;
-    z-index: -1;
+    border: 4px solid #ce1212;
+    border-radius: 50%;
+    animation: animate-preloader 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
-
-.featured-services .icon-box:hover::before {
-    background: #106eea;
-    top: 0;
-    border-radius: 0px;
+#preloader:after {
+    animation-delay: -0.5s;
 }
 
-.featured-services .icon {
-    margin-bottom: 15px;
+@keyframes animate-preloader {
+    0% {
+        width: 10px;
+        height: 10px;
+        top: calc(50% - 5px);
+        left: calc(50% - 5px);
+        opacity: 1;
+    }
+
+    100% {
+        width: 72px;
+        height: 72px;
+        top: calc(50% - 36px);
+        left: calc(50% - 36px);
+        opacity: 0;
+    }
+}
+/*--------------------------------------------------------------
+# Menu Section
+--------------------------------------------------------------*/
+.menu .nav-tabs {
+    border: 0;
 }
 
-.featured-services .icon i {
+.menu .nav-link {
+    margin: 0 10px;
+    padding: 10px 5px;
+    transition: 0.3s;
+    color: var(--color-secondary);
+    border-radius: 0;
+    cursor: pointer;
+    height: 100%;
+    border: 0;
+    border-bottom: 2px solid #b6b6bf;
+}
+
+@media (max-width: 575px) {
+    .menu .nav-link {
+        margin: 0 10px;
+        padding: 10px 0;
+    }
+}
+
+.menu .nav-link i {
+    padding-right: 15px;
     font-size: 48px;
-    line-height: 1;
-    color: #106eea;
-    transition: all 0.3s ease-in-out;
 }
 
-.featured-services .title {
-    font-weight: 700;
-    margin-bottom: 15px;
+.menu .nav-link h4 {
     font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    font-family:"Inter",
+        sans-serif;
 }
 
-.featured-services .title a {
-    color: #111;
+@media (max-width: 575px) {
+    .menu .nav-link h4 {
+        font-size: 16px;
+    }
 }
 
-.featured-services .description {
-    font-size: 15px;
-    line-height: 28px;
+.menu .nav-link:hover {
+    color: #ce1212;
+}
+
+.menu .nav-link.active {
+    color: #ce1212;
+    border-color: #ce1212;
+}
+
+.menu .tab-content .tab-header {
+    padding: 30px 0;
+}
+
+.menu .tab-content .tab-header p {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #676775;
     margin-bottom: 0;
 }
 
-.featured-services .icon-box:hover .title a,
-.featured-services .icon-box:hover .description {
-    color: #fff;
+.menu .tab-content .tab-header h3 {
+    font-size: 36px;
+    font-weight: 600;
+    color: #ce1212;
 }
 
-.featured-services .icon-box:hover .icon i {
-    color: #fff;
-}
-.container {
-    position: relative;
-    text-align: center;
-    color: white;
+.menu .tab-content .menu-item {
+    -moz-text-align-last: center;
+    text-align-last: center;
 }
 
-.bottom-left {
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
+.menu .tab-content .menu-item .menu-img {
+    padding: 0 60px;
+    margin-bottom: 15px;
 }
 
-.top-left {
-    position: absolute;
-    top: 8px;
-    left: 16px;
+.menu .tab-content .menu-item h4 {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--color-secondary);
+    font-family: "Inter",
+        sans-serif;
+    font-weight: 30px;
+    margin-bottom: 5px;
 }
 
-.top-right {
-    position: absolute;
-    top: 8px;
-    right: 16px;
+.menu .tab-content .menu-item .ingredients {
+    font-family: "Inter",
+        sans-serif;
+    color: #8d8d9b;
+    margin-bottom: 5px;
 }
 
-.bottom-right {
-    position: absolute;
-    bottom: 8px;
-    right: 16px;
-}
-
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.menu .tab-content .menu-item .price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ce1212;
 }
