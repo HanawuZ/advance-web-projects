@@ -39,3 +39,39 @@ tbody tr:nth-child(odd) {
 tbody tr:nth-child(even) {
   background-color: #FF3FA4;
 }
+
+.btn_order {
+  /* width: 20%; */
+  height: 90%;
+  border-radius: 57px;
+  background: #FF3FA4;
+  color: rgb(255, 255, 255);
+}
+
+.btn_listmenu {
+  /* width: 40%; */
+  height: 90%;
+  border-radius: 57px;
+  background: #FF3FA4;
+  color: rgb(255, 255, 255);
+  margin-right: 20px;
+}
+
+@media (max-width: 464px) {
+  .btn_order {
+    width: 20%;
+    height: 90%;
+    border-radius: 57px;
+    background: #FF3FA4;
+    color: rgb(255, 255, 255);
+  }
+
+  .btn_listmenu {
+    width: 40%;
+    height: 90%;
+    border-radius: 57px;
+    background: #FF3FA4;
+    color: rgb(255, 255, 255);
+    margin-right: 20px;
+  }
+}
