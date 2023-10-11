@@ -1,5 +1,5 @@
 const Food = require("../models/food")
-const { Burger, Sandwich, Coffee, TeaMilk} = require("../samples/food.samples")
+const { Burger , Sandwich, TeaMilk, Coffee, Cocoa, Espresso, Mocca, Latte, Bingsoo } = require("../samples/food.samples")
 
 async function listFood(req, res, next) {
     Food.find({})
@@ -13,8 +13,7 @@ async function listFood(req, res, next) {
 
 async function insertFood(req, res, next) {
 
-
-    Coffee.save().then((result) => {
+    Cocoa.save().then((result) => {
         console.log(result)
         res.status(201).json({ message: "Complete add data" })
     }).catch((err) => {
