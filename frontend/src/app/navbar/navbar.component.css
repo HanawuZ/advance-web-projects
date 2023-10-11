@@ -12,10 +12,10 @@ p {
     /* Apply the 'Kanit' font weight 600 (semi-bold) */
 }
 #header {
-    background: rgb(255, 255, 255);
+    background: #D8B4F8;
     transition: all 0.5s;
     z-index: 997;
-    height: 100px;
+    height: 80px;
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
     font-weight: bolder;
 }
@@ -35,11 +35,11 @@ p {
 }
 
 #header .logo a {
-    color: #ff0cce;
+    color: #ffffff;
 }
 
 #header .logo a span {
-    color: #ea10be;
+    color: #ffffff;
 }
 
 #header .logo img {
@@ -81,7 +81,7 @@ p {
     justify-content: space-between;
     padding: 0 3px;
     font-size: 18px;
-    color: #520041;
+    color: #ffffff;
     white-space: nowrap;
     transition: 0.3s;
     position: relative;
@@ -101,7 +101,7 @@ p {
     height: 2px;
     bottom: -6px;
     left: 0;
-    background-color: #ea10be;
+    background-color: #ffffff;
     visibility: hidden;
     width: 0px;
     transition: all 0.3s ease-in-out 0s;
@@ -118,7 +118,7 @@ p {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-    color: #ea10be;
+    color: #6a6a6a;
 }
 
 .navbar .dropdown ul {
