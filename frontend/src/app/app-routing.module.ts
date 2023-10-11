@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/admin/login/login.component';
 import { MenuComponent } from './pages/admin/menu/menu.component';
 import { AddmenuComponent } from './pages/admin/addmenu/addmenu.component';
 import { StatustableComponent } from './pages/admin/statustable/statustable.component';
+import { AdminCheckbillComponent } from './pages/admin/admincheckbill/admincheckbill.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent },
   { path: 'addmenu', component: AddmenuComponent },
   { path: 'statustable', component: StatustableComponent },
+  { path: 'admincheckbill', component: AdminCheckbillComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
