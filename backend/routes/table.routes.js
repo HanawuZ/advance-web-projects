@@ -4,9 +4,9 @@ const { listTables,insertstatus, insertTable, updateTable, getTableByid} = requi
 
 
 router.get('/table', listTables)
-router.post('/insertTable',insertTable)
-router.post('/insertstatus',insertstatus)
-router.put('/updateTable/:id',updateTable)
+router.post('/insertTable',authorization,insertTable)
+router.post('/insertstatus',authorization,insertstatus)
+router.put('/updateTable/:id',authorization,updateTable)
 router.get('/getpayment/:id', getTableByid)
 
 module.exports = router

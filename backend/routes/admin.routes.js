@@ -4,7 +4,7 @@ const { insertAdmin, updateAdmin, deleteAdmin, getAdminByID } = require('../cont
 
 router.get('/admin/:id', getAdminByID)
 router.post('/admin',insertAdmin)
-router.patch('/admin/:id', updateAdmin)
+router.put('/admin/:id', updateAdmin)
 router.delete('/admin/:id', deleteAdmin)
 
 module.exports = router
