@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const {insertOrderedFood, deleteOrderedFood, getOrderedFood } = require('../controllers/orderFood.controller')
+const {list_ordered_food, insertOrderedFood, deleteOrderedFood, getOrderedFood } = require('../controllers/orderFood.controller')
 
-router.get('/oder_food/:id', getOrderedFood)
-router.post('/oder_food',insertOrderedFood)
-router.delete('/oder_food/:id', deleteOrderedFood)
+router.get('/ordered_food/:id', getOrderedFood)
+router.get('/ordered_food', list_ordered_food)
+router.post('/ordered_food',insertOrderedFood)
+router.delete('/ordered_food/:id', deleteOrderedFood)
 
 module.exports = router
