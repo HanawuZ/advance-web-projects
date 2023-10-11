@@ -15,7 +15,7 @@ async function insertFood(req, res, next) {
     const Data = new Food({
         name: req.body.name,
         price: req.body.price,
-        description: req.body.description,
+        picture: req.body.picture,
     })
 
     Data.save().then((result) => {
@@ -48,20 +48,19 @@ async function updateFood(req, res, next) {
 }
 
 async function deleteFood(req, res, next) {
-    const id = req.params.id;
-    Food.findOneAndDelete({ id: id })
-        .then((result) => {
-            if (!result) {
-                return res.status(404).json({ message: 'Food not found' });
-            }
-            res.status(200).json(result);
-        })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).json({ message: 'Internal server error' });
-        });
-
+    const _id = req.params.id;
+    try {
+        const result = await Food.findOneAndDelete({ _id });
+        if (!result) {
+            return res.status(404).json({ message: 'Food not found' });
+        }
+        res.status(200).json(result);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 }
+
 
 async function getFoodByID(req, res, next) {
     const id = req.params.id
