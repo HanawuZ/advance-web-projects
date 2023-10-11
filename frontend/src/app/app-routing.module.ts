@@ -8,6 +8,7 @@ import { MenuComponent } from './pages/admin/menu/menu.component';
 import { AddmenuComponent } from './pages/admin/addmenu/addmenu.component';
 import { StatustableComponent } from './pages/admin/statustable/statustable.component';
 import { AdminCheckbillComponent } from './pages/admin/admincheckbill/admincheckbill.component';
+import { SingupComponent } from './pages/admin/singup/singup.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'addmenu', component: AddmenuComponent },
   { path: 'statustable', component: StatustableComponent },
   { path: 'admincheckbill', component: AdminCheckbillComponent },
+  { path: 'singup', component: SingupComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

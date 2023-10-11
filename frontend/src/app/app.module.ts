@@ -11,6 +11,7 @@ import { MenuComponent } from './pages/admin/menu/menu.component';
 import { AddmenuComponent } from './pages/admin/addmenu/addmenu.component';
 import { StatustableComponent } from './pages/admin/statustable/statustable.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SingupComponent } from './pages/admin/singup/singup.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     MenuComponent,
     AddmenuComponent,
     StatustableComponent,
-    NavbarComponent
+    NavbarComponent,
+    SingupComponent
   ],
   imports: [
     BrowserModule,
