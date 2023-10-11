@@ -6,7 +6,7 @@ const {insertFood,updateFood,deleteFood, getFoodByID, listFood} = require('../co
 router.get('/food/:id', getFoodByID)
 router.get('/foods', listFood)
 router.post('/food', authorization, insertFood)
-router.patch('/food/:id', authorization,updateFood)
+router.put('/food/:id', authorization,updateFood)
 router.delete('/food/:id', authorization, deleteFood)
 
 module.exports = router
