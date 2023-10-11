@@ -21,7 +21,7 @@ async function insertOrderedFood(req, res, next) {
 
     const sample = new Ordered_food({
         food: Burger,
-        amount: 12,
+        amount: 1,
         discription: "ลองของ"
     })
 

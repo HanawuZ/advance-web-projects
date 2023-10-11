@@ -6,11 +6,7 @@ const foodRoutes = require('./routes/food.routes')
 const adminRoutes = require('./routes/admin.routes')
 const orderRoutes = require('./routes/order.routes')
 const orderFoodRoutes = require('./routes/orderFood.routes')
-<<<<<<< HEAD
 const paymentRoutes = require('./routes/payment.routes')
-=======
-const orderRoutes = require('./routes/order.routes')
->>>>>>> aa5f10dca134c1c1a18e1bb57d31a4be1f8eeb07
 
 app.use((req, res, next) => {
     // console.log('Middleware')
@@ -33,10 +29,7 @@ app.use('/',foodRoutes)
 app.use('/',adminRoutes)
 app.use('/',orderFoodRoutes)
 app.use('/',orderRoutes)
-<<<<<<< HEAD
 app.use('/',paymentRoutes)
-=======
->>>>>>> aa5f10dca134c1c1a18e1bb57d31a4be1f8eeb07
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
