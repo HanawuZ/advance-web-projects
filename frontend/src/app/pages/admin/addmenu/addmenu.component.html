@@ -7,29 +7,29 @@
     <div class="row mt-5">
         <div class="col-7 me-3" style="background-color: #FFC7EA; border-radius: 30px; padding: 30px; text-align: start;">
             <h3><i class="fa-solid fa-utensils fa-lg" style="margin-right: 2%;"></i><b>เพิ่มเมนูอาหาร</b></h3>
-            <form>
+            
                 <div class="form-group">
                     <label for="foodName"><b>ชื่อเมนู</b></label>
-                    <input type="text" class="form-control w-50" id="foodName" placeholder="ชื่ออาหาร">
+                    <input type="text" class="form-control w-50" id="foodName" placeholder="ชื่ออาหาร" [(ngModel)]="name">
                 </div>
                 <div class="form-group">
                     <label for="foodPrice"><b>ราคา</b></label>
-                    <input type="number" class="form-control w-50" id="foodPrice" placeholder="ราคา">
+                    <input type="number" class="form-control w-50" id="foodPrice" placeholder="ราคา" [(ngModel)]="price">
                 </div>
                 <div class="form-group">
                     <label for="foodImage"><b>อัปโหลดรูปภาพ</b></label>
-                    <input type="file" class="form-control-file" id="foodImage" style="background-color: rgb(255, 255, 255); border-radius: 5px;">
+                    <input type="file" class="form-control-file" id="foodImage" style="background-color: rgb(255, 255, 255); border-radius: 5px;" [(ngModel)]="picture">
                 </div>
                 
                 <div style="text-align: end; margin-top: 7%;">
                     <a routerLink="/menu" type="button" class="btn buttonback">
                         <b>ย้อนกลับ</b>
                     </a>
-                    <a routerLink="/menu" type="button" class="btn buttonaddmenu">
-                        <i class="fa-solid fa-circle-plus fa-lg" style="color: #ffffff; margin-right: 5px;" ></i><b>เพิ่มเมนู</b>
+                    <a routerLink="/menu" type="button" class="btn buttonaddmenu"(click)="insertFood()">
+                        <i class="fa-solid fa-circle-plus fa-lg" style="color: #ffffff; margin-right: 5px;"  ></i><b>เพิ่มเมนู</b>
                     </a>
                 </div>
-            </form>
+           
         </div>
 
         <div class="col-1"></div>
