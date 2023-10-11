@@ -1,21 +1,28 @@
-const Ordered_food = require("../models/odered_food")
-
+const Ordered_food = require("../models/ordered_food")
+const Food = require("../models/food")
 async function list_ordered_food(req, res, next) {
-    Ordered_food.find({})
+
+    
+    Ordered_food.find({}).populate("food")
         .then((result) => {
+            console.log(result)
             res.status(200).json(result)
         })
         .catch((err) => {
+            console.log(err)
             res.status(500).json({ message: "Cannot get data" })
         })
 }
 
 async function insertOrderedFood(req, res, next) {
+
+    // Find food burger 
+    const Burger = await Food.findOne({ name: "Burger" })
+
     const sample = new Ordered_food({
-        ordered_food_id: "1",
-        food_id: "1",
-        amount: 150,
-        discription: "แพ้นมวัว"
+        food: Burger,
+        amount: 12,
+        discription: "ลองของ"
     })
 
     sample.save().then((result) => {
