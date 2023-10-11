@@ -1,4 +1,5 @@
 const Payment = require("../models/payments")
+const Order = require("../models/orders")
 
 async function listPayment(req, res, next) {
     Payment.find({})
@@ -11,9 +12,11 @@ async function listPayment(req, res, next) {
 }
 
 async function insertPayment(req, res, next) {
+
+    const sampleOrder = await Order.findOne({ _id: "65264e1af8ec0761b8e8cac7" })
+    console.log(sampleOrder)
     const samplePayment= new Payment({
-        payments_id: "123456",
-        order_id: order_id,
+        order: sampleOrder,
     })
 
     samplePayment.save().then((result) => {

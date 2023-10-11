@@ -23,4 +23,35 @@ const Coffee = new Food({
     price: 60,
     picture: "google.com/image3.png"
 })
-module.exports = { Burger , Sandwich, TeaMilk, Coffee }
+
+const Cocoa = new Food({
+    name: 'Cocoa',
+    price: 70,
+    picture: "google.com/image4.png"
+})
+
+const Espresso = new Food({
+    name: 'Espresso',
+    price: 80,
+    picture: "google.com/image5.png"
+
+})
+
+const Mocca = new Food({
+    name: 'Mocca',
+    price: 69,
+    picture: "google.com/image6.png"
+})
+
+const Latte = new Food({
+    name: 'Latte',
+    price: 75,
+    picture: "google.com/image7.png"
+})
+
+const Bingsoo = new Food({
+    name: 'Bingsoo',
+    price: 120,
+    picture: "google.com/image8.png"
+})
+module.exports = { Burger , Sandwich, TeaMilk, Coffee, Cocoa, Espresso, Mocca, Latte, Bingsoo }
