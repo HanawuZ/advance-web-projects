@@ -27,7 +27,12 @@ export class LoginComponent {
     })
     .then(response => response.json())
     .then(data => {
+      localStorage.setItem("token", data.token);
       console.log(data)
+
+      // go to home page
+      
+
       // console.log(this.foods);
     })
     .catch(error => console.error(error));
