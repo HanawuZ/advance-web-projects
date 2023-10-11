@@ -40,9 +40,8 @@ async function updateTable(req, res, next) {
     const id = req.params.id;
 
     const updateTableData = {
-        tables_id: 1,
-        status: 2,
-        order_id: 2
+        tables_id: id,
+        order_id: oder_id
     };
 
     Tables.findOneAndUpdate({ id: id }, updateTableData, { new: true })
@@ -58,7 +57,7 @@ async function updateTable(req, res, next) {
         });
 }
 
-async function getTable(req, res, next) {
+async function getTableByid(req, res, next) {
     const id = req.params.id
     Tables.findOne({ id: id })
         .then((result) => {
@@ -69,4 +68,4 @@ async function getTable(req, res, next) {
         })
 }
 
-module.exports = { listTables,insertstatus, insertTable, updateTable, getTable }
+module.exports = { listTables,insertstatus, insertTable, updateTable, getTableByid }

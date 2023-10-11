@@ -4,7 +4,9 @@ const port = 3000
 const connectToDatabase = require('./configs/setup')
 const foodRoutes = require('./routes/food.routes')
 const adminRoutes = require('./routes/admin.routes')
+const orderRoutes = require('./routes/order.routes')
 const orderFoodRoutes = require('./routes/orderFood.routes')
+const paymentRoutes = require('./routes/payment.routes')
 
 app.use((req, res, next) => {
     // console.log('Middleware')
@@ -26,6 +28,8 @@ app.get('/', (req, res) => {
 app.use('/',foodRoutes)
 app.use('/',adminRoutes)
 app.use('/',orderFoodRoutes)
+app.use('/',orderRoutes)
+app.use('/',paymentRoutes)
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })

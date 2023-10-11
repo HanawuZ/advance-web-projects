@@ -13,7 +13,7 @@ async function listPayment(req, res, next) {
 async function insertPayment(req, res, next) {
     const samplePayment= new Payment({
         payments_id: "123456",
-        order_id: 1,
+        order_id: order_id,
     })
 
     samplePayment.save().then((result) => {
@@ -26,7 +26,7 @@ async function insertPayment(req, res, next) {
 
 async function getPaymentByID(req, res, next) {
     const id = req.params.id
-    Payment.findOne({ id: id })
+    Payment.findOne({ payments_id: id })
         .then((result) => {
             res.status(200).json(result)
         })
