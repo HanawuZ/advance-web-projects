@@ -3,8 +3,7 @@ const { Schema } = mongoose;
 
 const tables = new Schema({
     tables_id: Number,
-    status: Number,
-    order_id: [{ order_id: Number }]
+    order: [{ type: mongoose.Types.ObjectId, ref: "Orders" }],
 })
 
 const status = new Schema({
