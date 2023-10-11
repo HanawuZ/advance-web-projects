@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ export class LoginComponent {
   admin_id: string = "";
   password: string = "";
 
+  constructor(private router: Router){}
   // Method for login
   login(){
     const data = {
@@ -29,9 +31,10 @@ export class LoginComponent {
     .then(data => {
       localStorage.setItem("token", data.token);
       console.log(data)
+      console.log(localStorage.getItem("token"))
 
       // go to home page
-      
+      this.router.navigate(["/menu"]);
 
       // console.log(this.foods);
     })
