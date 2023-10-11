@@ -9,6 +9,7 @@ const orderFoodRoutes = require('./routes/orderFood.routes')
 const paymentRoutes = require('./routes/payment.routes')
 const authorization = require('./routes/authorize.routes')
 const signup = require('./routes/singup.routes')
+const signin = require('./routes/signin.routes')
 
 app.use((req, res, next) => {
     // console.log('Middleware')
@@ -29,6 +30,7 @@ app.get('/', (req, res) => {
 app.use('/',authorization)
 app.use('/',foodRoutes)
 app.use('/',signup)
+app.use('/',signin)
 app.use('/',adminRoutes)
 app.use('/',orderFoodRoutes)
 app.use('/',orderRoutes)

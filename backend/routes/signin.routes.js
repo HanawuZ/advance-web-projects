@@ -1,8 +1,9 @@
-const expressFunction = require('express');
+const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const router = express.Router()
+const Admin = require('../models/admin');
 
 const key = 'MY_KEY';
 
@@ -20,17 +21,15 @@ const compareHash = async (plainText, hashText) => {
 
 const findUser = (admin_id) => {
     return new Promise((resolve, reject) => {
-        User.findOne({ admin_id: admin_id }, (err, data) => {
-            if (err) {
-                reject(new Error('Cannont find username!'));
-            } else {
+        console.log(admin_id)
+        Admin.findOne({ admin_id: admin_id })
+            .then((data) => {
                 if (data) {
                     resolve({ id: data._id, admin_id: data.admin_id, password: data.password })
                 } else {
                     reject(new Error('Cannont find username!'));
                 }
-            }
-        })
+            }).catch(err => reject(err))
     })
 
 }
@@ -46,18 +45,21 @@ router.route('/signin')
             lastname: req.body.lastname,
             gender: req.body.gender,
         };
+        console.log(playload);
+        try {
+            const result = await findUser(playload.admin_id);
+            const loginStatus = await compareHash(playload.password, result.password);
+            const status = loginStatus.status;
+            if (status) {
+                const token = jwt.sign(result, key, { expiresIn: 86400 });
+                res.status(200).json({ result, token, status });
+            } else {
+                res.status(200).json({ status });
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(404).send(error);
+        }
     })
-console.log(playload);
-try {
-    const result = await findUser(playload.admin_id);
-    const loginStatus = await compareHash(playload.password, result.password);
-    const status = loginStatus.status;
-    if (status) {
-        const token = jwt.sign(result, key, { expiresIn: 86400 });
-        res.status(200).json({ result, token, status });
-    } else {
-        res.status(200).json({ status });
-    }
-} catch (error) {
-    res.status(404).send(error);
-}
+
+module.exports = router
