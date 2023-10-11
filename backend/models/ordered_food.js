@@ -6,7 +6,7 @@ const ordered_food = new Schema({
     // food_id: Number,
     amount: Number,
     discription: String,
-    food: {type: mongoose.Types.ObjectId, ref: "Food"}
+    food: {type: mongoose.Schema.Types.ObjectId, ref: "Food"}
 
 })
 

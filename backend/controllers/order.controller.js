@@ -1,5 +1,5 @@
-const Order = require("../models/oders")
-
+const Order = require("../models/orders")
+const Ordered_food = require("../models/ordered_food")
 async function listOrder(req, res, next) {
     Order.find({})
         .then((result) => {
@@ -11,13 +11,19 @@ async function listOrder(req, res, next) {
 }
 
 async function insertOrder(req, res, next) {
+
+    const OrderedCoffee = await Ordered_food.findOne({ _id:"65264d2bb8fb5cfa7a07378b" }).populate("food")
+    console.log(OrderedCoffee)
+
+    const total_price = OrderedCoffee.amount * OrderedCoffee.food.price
+    console.log(total_price)
     const sample = new Order({
-        orders_id: 1,
-        // order_food_id: [{ordered_food_id: 1}, {ordered_food_id:2}],
-        order_food_id: [1,2],
-        total_price: 123,
-        table_id: 1
+        order_food : [OrderedCoffee],
+        table_id: 1,
+        total_price: total_price,
     })
+
+    
 
     sample.save().then((result) => {
         console.log(result)

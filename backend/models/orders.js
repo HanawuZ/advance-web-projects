@@ -10,5 +10,5 @@ const orders = new Schema({
     table_id: Number,
 })
 
-const Orders = mongoose.model('orders', orders);
+const Orders = mongoose.model('Orders', orders);
 module.exports =  Orders;

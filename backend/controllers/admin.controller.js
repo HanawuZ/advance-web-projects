@@ -1,11 +1,12 @@
 const Admin = require("../models/admin")
+const  {makeHash} = require('../middlewares/index')
 
 async function insertAdmin(req, res, next) {
     const sampleAdmin = new Admin({
         admin_id: "1",
         firstname: 'Burger',
         lastname: 'King',
-        password: 12345678,
+        password: makeHash('123456'),
         gender: 'male'
     })
 
@@ -24,7 +25,7 @@ async function updateAdmin(req, res, next) {
         // admin_id: 1,
         firstname: 'Burger',
         lastname: 'Kong',
-        password: 12345678,
+        password: makeHash('12345ooooo'),
         gender: 'male'
     };
 

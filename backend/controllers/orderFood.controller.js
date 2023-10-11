@@ -1,5 +1,6 @@
 const Ordered_food = require("../models/ordered_food")
 const Food = require("../models/food")
+
 async function list_ordered_food(req, res, next) {
 
     
@@ -17,12 +18,12 @@ async function list_ordered_food(req, res, next) {
 async function insertOrderedFood(req, res, next) {
 
     // Find food burger 
-    const Sandwich = await Food.findOne({ name: "Sandwich" })
+    const Coffee = await Food.findOne({ name: "Coffee" })
 
     const sample = new Ordered_food({
-        food: Sandwich,
-        amount: 3,
-        discription: "เอาผักเยอะๆ"
+        food: Coffee,
+        amount: 2,
+        discription: "เอาขมๆ"
     })
 
     sample.save().then((result) => {
