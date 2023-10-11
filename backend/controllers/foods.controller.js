@@ -11,7 +11,7 @@ async function listFood(req, res, next) {
 
 async function insertFood(req, res, next) {
     const sampleFood = new Food({
-        id: "1",
+        // id: "1",
         name: 'Burger',
         price: 150,
         picture: "google.com/image.png"

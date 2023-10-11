@@ -7,4 +7,4 @@ router.get('/ordered_food', list_ordered_food)
 router.post('/ordered_food',insertOrderedFood)
 router.delete('/ordered_food/:id', deleteOrderedFood)
 
-module.export = router
+module.exports = router

@@ -13,7 +13,7 @@ async function list_ordered_food(req, res, next) {
 async function insertOrderedFood(req, res, next) {
     const sample = new Ordered_food({
         ordered_food_id: "1",
-        food_id: 'Burger',
+        food_id: "1",
         amount: 150,
         discription: "แพ้นมวัว"
     })
@@ -30,7 +30,7 @@ async function insertOrderedFood(req, res, next) {
 
 async function deleteOrderedFood(req, res, next) {
     const id = req.params.id;
-    Ordered_food.findOneAndDelete({ id: id })
+    Ordered_food.findOneAndDelete({ ordered_food_id: id })
         .then((result) => {
             if (!result) {
                 return res.status(404).json({ message: 'Food not found' });
@@ -45,7 +45,7 @@ async function deleteOrderedFood(req, res, next) {
 
 async function getOrderedFood(req, res, next) {
     const id = req.params.id
-    Ordered_food.findOne({ id: id })
+    Ordered_food.findOne({ ordered_food_id: id })
         .then((result) => {
             res.status(200).json(result)
         })
