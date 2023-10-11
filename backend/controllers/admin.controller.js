@@ -2,18 +2,21 @@ const Admin = require("../models/admin")
 const  {makeHash} = require('../middlewares/index')
 
 async function insertAdmin(req, res, next) {
+    const Pass = await makeHash('123456')
     const sampleAdmin = new Admin({
-        admin_id: "1",
-        firstname: 'Burger',
-        lastname: 'King',
-        password: makeHash('123456'),
+        admin_id: "5",
+        firstname: 'AAA',
+        lastname: 'AAA',
+        password: Pass,
         gender: 'male'
     })
 
     sampleAdmin.save().then((result) => {
         console.log(result)
         res.status(201).json({ message: "Complete add data" })
-    }).catch((err) => {
+    })
+    .catch((err) => {
+        console.log(err)
         res.status(501).json({ message: "Cannot add data" })
     })
 }

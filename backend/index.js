@@ -7,6 +7,7 @@ const adminRoutes = require('./routes/admin.routes')
 const orderRoutes = require('./routes/order.routes')
 const orderFoodRoutes = require('./routes/orderFood.routes')
 const paymentRoutes = require('./routes/payment.routes')
+const authorization = require('./routes/authorize.routes')
 
 app.use((req, res, next) => {
     // console.log('Middleware')
@@ -24,7 +25,7 @@ connectToDatabase()
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
-
+app.use('/',authorization)
 app.use('/',foodRoutes)
 app.use('/',adminRoutes)
 app.use('/',orderFoodRoutes)
