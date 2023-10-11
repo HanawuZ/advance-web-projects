@@ -75,3 +75,19 @@ tbody tr:nth-child(even) {
     margin-right: 20px;
   }
 }
+
+.img_listmenu{
+  width: 200px;
+  height: 200px;
+}
+
+@media (max-width: 768px) {
+  .img_listmenu {
+    width: 150px;
+    height: 150px;
+    margin-left: -50px;
+  }
+  .list_manu_data{
+    margin-right: -50px;
+  }
+}

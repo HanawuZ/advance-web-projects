@@ -1,15 +1,20 @@
 <header id="header" class="d-flex align-items-center">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-        <h1 class="logo"><a href="index.html" style=" text-decoration: none;"><i class="fa-solid fa-bowl-food"></i>MINDGIRL</a></h1>
+        <h1 class="logo"><a routerLink="/home" routerLinkActive="active" style=" text-decoration: none;"><i class="fa-solid fa-bowl-food"></i>MINDGIRL</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="#hero">หน้าหลัก</a></li>
-                <li><a class="nav-link scrollto" href="#about">รายการอาหาร<i class="fa-solid fa-cart-shopping fa-2xl" style="font-size: 25px;"></i></a></li>
-                <li><a class="nav-link scrollto" href="#about"><i class="fa-solid fa-circle-user" style="font-size: 30px;"></i></a></li>
+                <li><a a routerLink="/home" routerLinkActive="active" class="nav-link scrollto active">หน้าหลัก</a></li>
+                <li>
+                    <a routerLink="listmenu" style="text-decoration: none;">
+                        รายการอาหาร<i class="fa-solid fa-cart-shopping fa-2xl me-3" style="font-size: 25px;" aria-hidden="true"></i>
+                        <span class="badge badge-danger" style="margin-left: 2px; margin-bottom: 20px;">9</span>
+                    </a>
+                </li>
+                <li><a routerLink="login" class="nav-link scrollto"><i class="fa-solid fa-circle-user" style="font-size: 30px;"></i></a></li>
                 <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="#">Drop Down 1</a></li>
