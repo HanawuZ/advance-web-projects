@@ -25,11 +25,10 @@ async function updateFood(req, res, next) {
     const id = req.params.id;
 
     const updatedFoodData = {
-        name: 'Chicken Sandwich',
-        price: 110,
-        picture: 'google.com/image.png',
-    };
-
+        name : req.body.name,
+        price : req.body.price,
+        description : req.body.description,
+    }
     Food.findOneAndUpdate({ id: id }, updatedFoodData, { new: true })
         .then((result) => {
             if (!result) {
