@@ -8,4 +8,10 @@ const Burger = new Food({
     picture: "google.com/image.png"
 })
 
-module.exports = Burger
+const Sandwich = new Food({
+    // id: "2",
+    name: 'Sandwich',
+    price: 100,
+    picture: "google.com/image1.png"
+})
+module.exports = { Burger , Sandwich }

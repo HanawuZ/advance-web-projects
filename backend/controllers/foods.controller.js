@@ -1,4 +1,6 @@
 const Food = require("../models/food")
+const { Burger, Sandwich} = require("../samples/food.samples")
+
 async function listFood(req, res, next) {
     Food.find({})
         .then((result) => {
@@ -17,7 +19,7 @@ async function insertFood(req, res, next) {
         picture: "google.com/image.png"
     })
 
-    sampleFood.save().then((result) => {
+    Sandwich.save().then((result) => {
         console.log(result)
         res.status(201).json({ message: "Complete add data" })
     }).catch((err) => {

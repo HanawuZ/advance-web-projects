@@ -17,12 +17,12 @@ async function list_ordered_food(req, res, next) {
 async function insertOrderedFood(req, res, next) {
 
     // Find food burger 
-    const Burger = await Food.findOne({ name: "Burger" })
+    const Sandwich = await Food.findOne({ name: "Sandwich" })
 
     const sample = new Ordered_food({
-        food: Burger,
-        amount: 1,
-        discription: "ลองของ"
+        food: Sandwich,
+        amount: 3,
+        discription: "เอาผักเยอะๆ"
     })
 
     sample.save().then((result) => {
