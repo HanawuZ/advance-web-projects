@@ -16,17 +16,16 @@ async function list_ordered_food(req, res, next) {
 }
 
 async function insertOrderedFood(req, res, next) {
+    
+    const Food = await Food.findOne({ _id: req.body._id })
 
-    // Find food burger 
-    const Coffee = await Food.findOne({ name: "Coffee" })
-
-    const sample = new Ordered_food({
-        food: Coffee,
-        amount: 2,
-        discription: "เอาขมๆ"
+    const Data = new Ordered_food({
+        food: Food,
+        amount: req.body.amount,
+        discription: req.bodt.discription,
     })
 
-    sample.save().then((result) => {
+    Data.save().then((result) => {
         console.log(result)
         res.status(201).json({ message: "Complete add data" })
     }).catch((err) => {
@@ -37,8 +36,8 @@ async function insertOrderedFood(req, res, next) {
 
 
 async function deleteOrderedFood(req, res, next) {
-    const id = req.params.id;
-    Ordered_food.findOneAndDelete({ ordered_food_id: id })
+    const _id = req.params._id;
+    Ordered_food.findOneAndDelete({ _id: _id })
         .then((result) => {
             if (!result) {
                 return res.status(404).json({ message: 'Food not found' });
@@ -52,8 +51,8 @@ async function deleteOrderedFood(req, res, next) {
 }
 
 async function getOrderedFood(req, res, next) {
-    const id = req.params.id
-    Ordered_food.findOne({ ordered_food_id: id })
+    const _id = req.params._id
+    Ordered_food.findOne({ _id: _id })
         .then((result) => {
             res.status(200).json(result)
         })
