@@ -13,7 +13,7 @@ async function listFood(req, res, next) {
 
 async function insertFood(req, res, next) {
 
-    Burger.save().then((result) => {
+    Espresso.save().then((result) => {
         console.log(result)
         res.status(201).json({ message: "Complete add data" })
     }).catch((err) => {
