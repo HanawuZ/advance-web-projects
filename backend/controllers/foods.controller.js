@@ -12,8 +12,13 @@ async function listFood(req, res, next) {
 }
 
 async function insertFood(req, res, next) {
+    const Data = new Food({
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+    })
 
-    Espresso.save().then((result) => {
+    Data.save().then((result) => {
         console.log(result)
         res.status(201).json({ message: "Complete add data" })
     }).catch((err) => {
@@ -25,11 +30,10 @@ async function updateFood(req, res, next) {
     const id = req.params.id;
 
     const updatedFoodData = {
-        name: 'Chicken Sandwich',
-        price: 110,
-        picture: 'google.com/image.png',
-    };
-
+        name : req.body.name,
+        price : req.body.price,
+        description : req.body.description,
+    }
     Food.findOneAndUpdate({ id: id }, updatedFoodData, { new: true })
         .then((result) => {
             if (!result) {
