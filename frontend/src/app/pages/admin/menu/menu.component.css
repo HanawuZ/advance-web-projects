@@ -1,45 +1,94 @@
-h2{
-    margin-top: 3%;
-    margin-bottom: 5%;
-    background-color: rgb(255, 255, 255);
-    border-radius: 20px;
+html,
+body,
+.intro {
+  height: 100%;
 }
 
-.button{
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+}
+
+.card {
+  border-radius: .5rem;
+}
+
+.btn {
+  border-radius: 20px;
+}
+
+td {
+  border-radius: 20px;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 20px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #FFC7EA;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #FF3FA4;
+}
+
+.btn_order {
+  /* width: 20%; */
+  height: 90%;
+  border-radius: 57px;
+  background: #FF3FA4;
+  color: rgb(255, 255, 255);
+}
+
+.btn_listmenu {
+  /* width: 40%; */
+  height: 90%;
+  border-radius: 57px;
+  background: #FF3FA4;
+  color: rgb(255, 255, 255);
+  margin-right: 20px;
+}
+
+@media (max-width: 464px) {
+  .btn_order {
+    width: 20%;
+    height: 90%;
+    border-radius: 57px;
+    background: #FF3FA4;
+    color: rgb(255, 255, 255);
+  }
+
+  .btn_listmenu {
+    width: 40%;
+    height: 90%;
+    border-radius: 57px;
+    background: #FF3FA4;
+    color: rgb(255, 255, 255);
+    margin-right: 20px;
+  }
+}
+#button{
     text-align: end;
+   
 }
 
-.btn{
+#btn{ 
+    width: 15%;
+    padding: 2%;
+    margin-top: 4%;
     background-color: #FF3FA4; 
-    border-radius: 20px;
+    border-radius: 40px;
     color: #ffffff;
 }
 
-i{
-    color: #ffffff; 
-    margin-right: 5px;
-}
-
-.container-fluid{
-    background-color: rgb(255, 180, 227);
-    width: 100%;
-    height: 100%;
-
-}
-/* CSS สำหรับตาราง */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 20px auto;
-    border: 1px solid #930909; /* กำหนดกรอบตาราง */
-}
-
-th, td {
-    border: 1px solid #ccc; /* กำหนดกรอบสำหรับแต่ละเซลล์ */
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2; /* สีพื้นหลังสำหรับหัวตาราง */
+.fa-solid{
+    margin-right: 5%;
 }
