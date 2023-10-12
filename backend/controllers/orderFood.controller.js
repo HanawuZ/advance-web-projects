@@ -29,7 +29,7 @@ async function updateOrderedFood(req, res, next) {
         }
     } else if (flag === 0) {
         newOrderedFood = {
-            amount: orderFood.amount - 1
+            amount: orderFood.amount -1 < 0 ? 0 : orderFood.amount - 1 
         }
     }
     
