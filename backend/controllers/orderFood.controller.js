@@ -15,14 +15,19 @@ async function list_ordered_food(req, res, next) {
         })
 }
 
+async function updateOrderedFood(req, res, next) {
+    const id = req.params.id;
+    Ordered_food.findOneAndUpdate()
+}
+
 async function insertOrderedFood(req, res, next) {
     
-    const Food = await Food.findOne({ _id: req.body._id })
+    const food = await Food.findOne({ _id: req.params.id })
 
     const Data = new Ordered_food({
-        food: Food,
-        amount: req.body.amount,
-        discription: req.bodt.discription,
+        food: food,
+        amount: 0,
+        discription: "",
     })
 
     Data.save().then((result) => {
@@ -36,7 +41,7 @@ async function insertOrderedFood(req, res, next) {
 
 
 async function deleteOrderedFood(req, res, next) {
-    const _id = req.params._id;
+    const _id = req.params.id;
     Ordered_food.findOneAndDelete({ _id: _id })
         .then((result) => {
             if (!result) {

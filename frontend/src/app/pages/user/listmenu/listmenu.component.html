@@ -10,33 +10,34 @@
         </div>
         <div class="row justify-content-center pt-5">
             <div class="col-12">
-                <div class="card shadow-2-strong mb-3">
+
+                <div class="card shadow-2-strong mb-3" *ngFor="let item of orderedFood; index as i;" >
                     <div class="card-body">
                         <div class="container">
                             <div
                                 class="row px-3 mx-3 pt-2 d-flex justify-content-center align-items-center text-center">
                                 <div class="col-4 col-md-4">
-                                    <img src="assets/img/menu/menu-item-1.png" class="img_listmenu" alt="Image 1">
+                                    <img [src]="item.food.picture" class="img_listmenu" alt="Image 1">
                                 </div>
-                                <div class="col-8 col-md-8 list_manu_data">
+                                <div class="col-8 col-md-8 list_manu_data" >
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <h4>System Architect</h4>
-                                        <button type="button" class="btn btn-light btn-sm px-3">
+                                        <h4> {{item.food.name}} </h4>
+                                        <button type="button" class="btn btn-light btn-sm px-3" (click)="deleteOrderedFood(item._id)">
                                             <i class="fa-solid fa-trash fa-xl"></i>
                                         </button>
                                     </div>
                                     <div class="d-flex align-items-between justify-content-between mt-5">
-                                    <h5>61 บาท</h5>
-                                    <div class="d-flex">
-                                        <button type="button" class="btn btn-danger btn-sm px-3">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </button>
-                                        <h5 class="mx-3" style="background-color: white;">10</h5>
-                                        <button type="button" class="btn btn-success btn-sm px-3">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
+                                        <h5>{{item.food.price}} บาท</h5>
+                                        <div class="d-flex">
+                                            <button type="button" class="btn btn-danger btn-sm px-3">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </button>
+                                            <h5 class="mx-3" style="background-color: white;"> {{item.amount}}</h5>
+                                            <button type="button" class="btn btn-success btn-sm px-3">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
                                     <div class="form-group pt-5">
                                         <input type="text" class="form-control"
                                             style="width: 100%; border-radius: 10px; text-decoration: none;"
@@ -47,41 +48,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card shadow-2-strong">
-                    <div class="card-body">
-                        <div class="container">
-                            <div class="row px-3 mx-3 pt-2 d-flex justify-content-center align-items-center text-center">
-                                <div class="col-4 col-md-4">
-                                    <img src="assets/img/menu/menu-item-1.png" class="img_listmenu" alt="Image 1">
-                                </div>
-                                <div class="col-8 col-md-8 list_manu_data">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h4>System Architect</h4>
-                                        <button type="button" class="btn btn-light btn-sm px-3">
-                                            <i class="fa-solid fa-trash fa-xl"></i>
-                                        </button>
-                                    </div>
-                                    <div class="d-flex align-items-between justify-content-between mt-5">
-                                        <h5>61 บาท</h5>
-                                        <div class="d-flex">
-                                            <button type="button" class="btn btn-danger btn-sm px-3">
-                                                <i class="fa-solid fa-minus"></i>
-                                            </button>
-                                            <h5 class="mx-3" style="background-color: white;">10</h5>
-                                            <button type="button" class="btn btn-success btn-sm px-3">
-                                                <i class="fa-solid fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group pt-5">
-                                        <input type="text" class="form-control" style="width: 100%; border-radius: 10px; text-decoration: none;"
-                                            placeholder="ความต้องการเพิ่มเติม">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
         <div class="d-flex justify-content-end pt-5 pb-5">
