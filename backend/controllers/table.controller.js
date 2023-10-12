@@ -10,12 +10,12 @@ async function listTables(req, res, next) {
 }
 
 async function insertTable(req, res, next) {
-    const sample_table = new Tables({
-        tables_id: 1,
-        status: 1,
-        order_id: 1
+    const table = new Tables({
+        tables_id: req.tables_id,
+        status: req.status,
+        order: req.order
     })
-    sample_table.save().then((result) => {
+    table.save().then((result) => {
         console.log(result)
         res.status(201).json({ message: "Complete add data" })
     }).catch((err) => {
