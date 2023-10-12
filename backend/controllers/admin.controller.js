@@ -1,4 +1,5 @@
-const Admin = require("../models/admin")
+const {Admin,Gender} = require("../models/admin")
+
 const  {makeHash} = require('../middlewares/index')
 
 async function insertAdmin(req, res, next) {
@@ -72,4 +73,23 @@ async function getAdminByID(req, res, next) {
         })
 }
 
-module.exports = { insertAdmin, updateAdmin, deleteAdmin, getAdminByID}
+async function insertGender(req, res, next) {
+    const genderValue = req.body.gender; // หากเรามีพารามิเตอร์ "gender" ใน request body
+
+    // สร้างอ็อบเจ็กต์ Gender ด้วยค่าที่มาจาก request body
+    const sampleGender = new Gender({
+        gender: genderValue,
+    });
+
+    try {
+        // บันทึกข้อมูลลงในฐานข้อมูล
+        const result = await sampleGender.save();
+        console.log(result);
+        res.status(201).json({ message: "Complete add data" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Cannot add data" });
+    }
+}
+
+module.exports = { insertAdmin, updateAdmin, deleteAdmin, getAdminByID,insertGender}
