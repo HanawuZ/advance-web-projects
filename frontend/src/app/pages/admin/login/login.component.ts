@@ -34,7 +34,7 @@ export class LoginComponent {
       console.log(localStorage.getItem("token"))
 
       // go to home page
-      this.router.navigate(["/menu"],);
+      this.router.navigate(["/home"],);
 
       // Wait for a short delay and then reload the page
       setTimeout(() => {
