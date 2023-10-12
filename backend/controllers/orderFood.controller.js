@@ -17,7 +17,32 @@ async function list_ordered_food(req, res, next) {
 
 async function updateOrderedFood(req, res, next) {
     const id = req.params.id;
-    Ordered_food.findOneAndUpdate()
+    const flag = req.body.flag
+    let newOrderedFood
+
+    const orderFood = await Ordered_food.findOne({ _id: id })
+
+    console.log(orderFood.amount)
+    if (flag === 1) {
+        newOrderedFood = {
+            amount: orderFood.amount + 1
+        }
+    } else if (flag === 0) {
+        newOrderedFood = {
+            amount: orderFood.amount - 1
+        }
+    }
+    
+    Ordered_food.findOneAndUpdate({_id : id}, newOrderedFood, {new : true})
+    .then((data)=>{
+        if (!data) {
+            return res.status(404).json({ message: 'Food not found' });
+        }
+        res.status(201).json(data);
+
+    }).catch((err)=>{
+        console.log(err)
+    })
 }
 
 async function insertOrderedFood(req, res, next) {
@@ -67,4 +92,4 @@ async function getOrderedFood(req, res, next) {
 
 }
 
-module.exports = {list_ordered_food, insertOrderedFood, deleteOrderedFood, getOrderedFood }
+module.exports = {list_ordered_food, insertOrderedFood, deleteOrderedFood, getOrderedFood, updateOrderedFood }

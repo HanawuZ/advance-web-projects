@@ -20,6 +20,18 @@ export class ListmenuComponent implements OnInit {
       .catch(error => console.error(error));
   }
 
+  updateOrderFood(id: any , flag : any) {
+    fetch(`http://localhost:3000/ordered_food/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({
+        flag: flag,
+      })
+    }).then (() => {
+      this.getOrderedFood()
+    })
+  }
+
   deleteOrderedFood(_id : any){
     fetch(`http://localhost:3000/ordered_food/${_id}`, {
       method: 'DELETE',
