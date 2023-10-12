@@ -12,6 +12,7 @@ import { AddmenuComponent } from './pages/admin/addmenu/addmenu.component';
 import { StatustableComponent } from './pages/admin/statustable/statustable.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SingupComponent } from './pages/admin/singup/singup.component';
+import { ProfileComponent } from './pages/admin/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SingupComponent } from './pages/admin/singup/singup.component';
     AddmenuComponent,
     StatustableComponent,
     NavbarComponent,
-    SingupComponent
+    SingupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

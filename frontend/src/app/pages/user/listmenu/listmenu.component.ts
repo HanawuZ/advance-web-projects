@@ -9,6 +9,7 @@ export class ListmenuComponent implements OnInit {
 
   orderedFood : any[] = [];
 
+  constructor() {}
   getOrderedFood() {
     fetch('http://localhost:3000/ordered_food')
       .then(response => response.json())
@@ -17,6 +18,27 @@ export class ListmenuComponent implements OnInit {
         console.log(this.orderedFood);
       })
       .catch(error => console.error(error));
+  }
+
+  updateOrderFood(id: any , flag : any) {
+    fetch(`http://localhost:3000/ordered_food/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({
+        flag: flag,
+      })
+    }).then (() => {
+      this.getOrderedFood()
+    })
+  }
+
+  deleteOrderedFood(_id : any){
+    fetch(`http://localhost:3000/ordered_food/${_id}`, {
+      method: 'DELETE',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' }
+    }).then (() => {
+      this.getOrderedFood()
+    })
   }
 
   ngOnInit(): void {
