@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit{
       method: 'POST',
       headers: { 'Content-type': 'application/json; charset=UTF-8' }
     })
+        location.reload();
   }
 
   // Method for get the food via API
