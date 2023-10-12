@@ -9,6 +9,15 @@ const orderFoodRoutes = require('./routes/orderFood.routes')
 const paymentRoutes = require('./routes/payment.routes')
 const signup = require('./routes/singup.routes')
 const signin = require('./routes/signin.routes')
+const { dumpFoods } = require('./samples/food.samples')
+const { dumpAdmins }= require('./samples/admin.samples')
+const { dumpOrderedFoods }= require('./samples/ordered_food.samples')
+
+async function dumpData(){
+    // await dumpFoods()
+    // await dumpOrderedFoods()
+    await dumpAdmins()
+}
 
 app.use((req, res, next) => {
     // console.log('Middleware')
@@ -20,8 +29,8 @@ app.use((req, res, next) => {
 
 
 app.use(express.json());
-
 connectToDatabase()
+ dumpData()
 
 app.get('/', (req, res) => {
     res.send('Hello World!')

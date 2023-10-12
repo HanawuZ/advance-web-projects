@@ -37,4 +37,11 @@ const Espresso = new Food({
 
 })
 
-module.exports = { Burger , Sandwich, TeaMilk, Coffee, Cocoa, Espresso }
+async function dumpFoods() {
+    const foods = [Burger, Sandwich, TeaMilk, Coffee, Cocoa, Espresso]
+    foods.forEach( async (food) => {
+        await food.save()
+    });
+}
+
+module.exports = { dumpFoods }
