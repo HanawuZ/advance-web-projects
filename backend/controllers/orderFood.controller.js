@@ -41,7 +41,7 @@ async function insertOrderedFood(req, res, next) {
 
 
 async function deleteOrderedFood(req, res, next) {
-    const _id = req.params._id;
+    const _id = req.params.id;
     Ordered_food.findOneAndDelete({ _id: _id })
         .then((result) => {
             if (!result) {
