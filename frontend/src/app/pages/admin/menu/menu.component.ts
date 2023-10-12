@@ -20,6 +20,18 @@ export class MenuComponent {
       .catch(error => console.error(error));
   }
 
+  deleteFood(id: any) {
+    fetch("http://localhost:3000/food" + '/' + id, {
+      method: 'DELETE'
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.getFood();
+      })
+      .catch(error => console.error(error));
+  }
+
   ngOnInit(): void {
     this.getFood()
   }
