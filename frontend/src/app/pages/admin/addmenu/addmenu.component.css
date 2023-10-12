@@ -24,7 +24,6 @@ label{
 .buttonaddmenu{
     background-color: #d05de2;
      border-radius: 20px; 
-     margin-left: 73%;
      font-size: large;
 }
 
@@ -32,4 +31,5 @@ label{
     background-color: #d02626; 
     border-radius: 20px;
     font-size: large;
+    margin-right: 65%;
 }
