@@ -7,7 +7,6 @@ const tables = new Schema({
 })
 
 const status = new Schema({
-    status_id: Number,
     status_name: String
 })
 

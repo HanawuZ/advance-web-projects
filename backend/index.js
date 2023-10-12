@@ -12,11 +12,15 @@ const signin = require('./routes/signin.routes')
 const { dumpFoods } = require('./samples/food.samples')
 const { dumpAdmins }= require('./samples/admin.samples')
 const { dumpOrderedFoods }= require('./samples/ordered_food.samples')
-
+const { dumpTables, dumpStatus }= require('./samples/table.samples')
 async function dumpData(){
+
+    // If you want to dump which data, just uncomment it.
     // await dumpFoods()
     // await dumpOrderedFoods()
-    await dumpAdmins()
+    // await dumpAdmins()
+    // await dumpStatus()
+    // await dumpTables()
 }
 
 app.use((req, res, next) => {
