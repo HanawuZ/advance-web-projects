@@ -20,20 +20,15 @@ async function listOrder(req, res, next) {
 
 async function insertOrder(req, res, next) {
     const order_foods = req.body.order_foods
-    let newOrderFoods = []
-    order_foods.forEach(async (order_food_id) => {
-        const ordered_food = await Ordered_food.findOne({ _id: order_food_id }).populate("food")
-        newOrderFoods.push(ordered_food)
-        const _ = await Ordered_food.findOneAndDelete({ _id: order_food_id })
-    });
+ 
 
     let total_price = 0
-    for (let i = 0; i < newOrderFoods.length; i++) {
-        total_price = total_price + newOrderFoods[i].amount * newOrderFoods[i].food.price
+    for (let i = 0; i < order_foods.length; i++) {
+        total_price = total_price + order_foods[i].amount * order_foods[i].food.price
     }
     console.log(total_price)
     const sample = new Order({
-        order_food: newOrderFoods,
+        order_food: order_foods,
         table_id: req.body.table_id,
         total_price: total_price,
     })
