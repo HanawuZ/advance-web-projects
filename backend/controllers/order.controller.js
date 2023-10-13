@@ -53,8 +53,8 @@ async function insertOrder(req, res, next) {
             total_price: newTotalPrice,
         })
     
-    
-        data.save().then((result) => {
+        Order.findOneAndUpdate({ table_id: table_id }, data, { new: true })
+        .then((result) => {
             console.log(result)
             res.status(201).json({ message: "Complete add data" })
         }).catch((err) => {
