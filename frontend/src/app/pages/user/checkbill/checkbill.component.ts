@@ -6,7 +6,7 @@ import { OnInit } from '@angular/core';
   templateUrl: './checkbill.component.html',
   styleUrls: ['./checkbill.component.css'],
 })
-export class CheckbillComponent {
+export class CheckbillComponent implements OnInit {
   order: any = {};
   orderedFood: any[] = [];
   constructor() {}
@@ -20,15 +20,15 @@ export class CheckbillComponent {
       })
       .catch((error) => console.error(error));
   }
-  
+
   getOrderedFood() {
     fetch('http://localhost:3000/ordered_food')
-    .then((response) => response.json())
-    .then((data) => {
-      this.orderedFood = data;
-      console.log(this.orderedFood);
-    })
-    .catch((error) => console.error(error));
+      .then((response) => response.json())
+      .then((data) => {
+        this.orderedFood = data;
+        console.log(this.orderedFood);
+      })
+      .catch((error) => console.error(error));
   }
 
   ngOnInit(): void {
