@@ -13,6 +13,7 @@ import { StatustableComponent } from './pages/admin/statustable/statustable.comp
 import { NavbarComponent } from './navbar/navbar.component';
 import { SingupComponent } from './pages/admin/singup/singup.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
+import { AdminCheckbillComponent } from './pages/admin/admincheckbill/admincheckbill.component';
 
 @NgModule({
   declarations: [
@@ -26,14 +27,11 @@ import { ProfileComponent } from './pages/admin/profile/profile.component';
     StatustableComponent,
     NavbarComponent,
     SingupComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminCheckbillComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
