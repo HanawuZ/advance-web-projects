@@ -21,6 +21,9 @@ async function listOrder(req, res, next) {
 async function insertOrder(req, res, next) {
     const order_foods = req.body.order_foods
  
+    order_foods.forEach(async (order_food) => {
+        await Ordered_food.findOneAndDelete( {_id : order_food._id} )
+    });
 
     let total_price = 0
     for (let i = 0; i < order_foods.length; i++) {
