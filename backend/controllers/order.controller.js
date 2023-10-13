@@ -19,15 +19,21 @@ async function listOrder(req, res, next) {
 }
 
 async function insertOrder(req, res, next) {
+    const order_foods = req.body.order_foods
+    let newOrderFoods = []
+    order_foods.forEach(async (order_food_id) => {
+        const ordered_food = Ordered_food.findOne({ _id: order_food_id }).populate("food")
+        newOrderFoods.push(ordered_food)
+    });
 
-    const OrderedCoffee = await Ordered_food.findOne({ _id: "65264d2bb8fb5cfa7a07378b" }).populate("food")
-    console.log(OrderedCoffee)
-
-    const total_price = OrderedCoffee.amount * OrderedCoffee.food.price
+    let total_price = 0
+    for (let i = 0; i < newOrderFoods.length; i++) {
+        total_price = total_price + newOrderFoods[i].amount * newOrderFoods[i].food.price
+    }
     console.log(total_price)
     const sample = new Order({
-        order_food: [OrderedCoffee],
-        table_id: 1,
+        order_food: newOrderFoods,
+        table_id: req.body.table_id,
         total_price: total_price,
     })
 
@@ -60,7 +66,7 @@ async function getOrder(req, res, next) {
             res.status(200).json(data)
         })
         .catch((err) => {
-            res.status(500).json({ message: "Cannot get data" })
+            res.status(500).json({ message: "Cannot get order" })
         })
 }
 
