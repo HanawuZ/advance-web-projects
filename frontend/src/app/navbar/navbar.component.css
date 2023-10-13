@@ -11,20 +11,28 @@ p {
     font-weight: 600;
     /* Apply the 'Kanit' font weight 600 (semi-bold) */
 }
-#header {
-    background: #D8B4F8;
+.user-background {
+    background: #ffffff;
     transition: all 0.5s;
     z-index: 997;
     height: 80px;
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
     font-weight: bolder;
 }
-
+.admin-background{
+    background: #D8B4F8;
+    transition: all 0.5s;
+    z-index: 997;
+    height: 80px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    font-weight: bolder;
+    color: #fff;
+}
 #header.fixed-top {
     height: 70px;
 }
 
-#header .logo {
+#header .user-logo {
     font-size: 30px;
     font-weight: 600;
     margin: 0;
@@ -34,22 +42,50 @@ p {
     font-family: "Poppins", sans-serif;
 }
 
-#header .logo a {
-    color: #ffffff;
+#header .user-logo a {
+    color: #000000;
 }
 
-#header .logo a span {
-    color: #ffffff;
+#header .user-logo a span {
+    color: #ff00d9;
 }
 
-#header .logo img {
+#header .user-logo img {
     max-height: 40px;
 }
 
+#header .admin-logo {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    letter-spacing: 0.8px;
+    font-family: "Poppins", sans-serif;
+}
+
+#header .admin-logo a {
+    color: #ffffff;
+}
+
+#header .admin-logo a span {
+    color: #ff72ea;
+}
+
+#header .admin-logo img {
+    max-height: 40px;
+}
+.header.sticked {
+    border-color: #fff;
+    border-color: #eee;
+}
 .scrolled-offset {
     margin-top: 70px;
 }
 
+.fa-bowl-food{
+   margin-right: 10px;
+}
 .navbar {
     padding: 0;
 }
@@ -61,9 +97,6 @@ p {
     list-style: none;
     align-items: center;
 }
- .fa-bowl-food{
-    margin-right: 10px;
- }
 .navbar li {
     position: relative;
     
@@ -74,14 +107,27 @@ p {
     padding: 10px 0 10px 28px;
 }
 
-.navbar a,
-.navbar a:focus {
+.admin-navbar a,
+.admin-navbar a:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 3px;
     font-size: 18px;
     color: #ffffff;
+    white-space: nowrap;
+    transition: 0.3s;
+    position: relative;
+}
+
+.user-navbar a,
+.user-navbar a:focus {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3px;
+    font-size: 18px;
+    color: #4e4e4e;
     white-space: nowrap;
     transition: 0.3s;
     position: relative;
@@ -114,9 +160,16 @@ p {
     width: 100%;
 } */
 
-.navbar a:hover,
-.navbar .active,
-.navbar .active:focus,
-.navbar li:hover>a {
-    color: #6a6a6a;
+.user-navbar a:hover,
+.user-navbar .active,
+.user-navbar .active:focus,
+.user-navbar li:hover>a {
+    color: #000000;
+}
+
+.admin-navbar a:hover,
+.admin-navbar .active,
+.admin-navbar .active:focus,
+.admin-navbar li:hover>a {
+    color: #666666;
 }

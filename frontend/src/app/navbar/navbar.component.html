@@ -1,11 +1,11 @@
-<header id="header" class="d-flex align-items-center">
+<header id="header" class="d-flex align-items-center" [ngClass]="{'user-background': !isAdmin, 'admin-background': isAdmin}">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-        <h1 class="logo"><a routerLink="/home" routerLinkActive="active" style=" text-decoration: none;"><i class="fa-solid fa-bowl-food"></i>MINDGIRL</a></h1>
+        <h1 [ngClass]="{'user-logo': !isAdmin, 'admin-logo': isAdmin}" ><a routerLink="/home" routerLinkActive="active" style=" text-decoration: none;"><i class="fa-solid fa-bowl-food"></i>MINDGIRL<span>.</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
 
-        <nav id="navbar" class="navbar">
+        <nav id="navbar" class="navbar" [ngClass]="{'user-navbar': !isAdmin, 'admin-navbar': isAdmin}">
             <ul>
                 <li><a a routerLink="/home" routerLinkActive="active" class="nav-link scrollto active">Home</a></li>
                 <li *ngIf="!isAdmin">
