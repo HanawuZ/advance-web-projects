@@ -5,88 +5,90 @@
           <div class="card shadow-2-strong card-registration" style="border-radius: 15px;  background-color: rgb(255, 180, 227);">
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-              <form>
+              <form [formGroup]="adminForm">
                 <div class="row">
                     <div class="col-md-6 mb-4">
-    
+
                       <div class="form-outline">
-                        <input type="text" id="username" class="form-control form-control-lg" />
-                        <label class="form-label" for="username">Username</label>
+                        <input type="text" id="username" class="form-control form-control-lg" formControlName='user_name' />
+                        <label class="form-label" for="username" >Username</label>
                       </div>
-    
                     </div>
                     <div class="col-md-6 mb-4">
-    
+
                         <h6 class="mb-2 pb-1">Gender: </h6>
-  
+
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                            value="option1" checked />
+                          <input class="form-check-input" type="radio" name="gender" id="femaleGender"
+                            value="Female"  formControlName='Gender' />
                           <label class="form-check-label" for="femaleGender">Female</label>
                         </div>
-      
+
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                            value="option2" />
+                            value="male" formControlName='Gender' />
                           <label class="form-check-label" for="maleGender">Male</label>
                         </div>
-      
+
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
                             value="option3" />
                           <label class="form-check-label" for="otherGender">Other</label>
                         </div>
-      
+
                     </div>
                   </div>
-  
+
                 <div class="row">
                   <div class="col-md-6 mb-4">
-  
+
                     <div class="form-outline">
-                      <input type="text" id="firstName" class="form-control form-control-lg" />
+                      <input type="text" id="firstName" class="form-control form-control-lg" formControlName='firstname'/>
                       <label class="form-label" for="firstName">First Name</label>
                     </div>
-  
+
                   </div>
                   <div class="col-md-6 mb-4">
-  
+
                     <div class="form-outline">
-                      <input type="text" id="lastName" class="form-control form-control-lg" />
+                      <input type="text" id="lastName" class="form-control form-control-lg" formControlName='lastname' />
                       <label class="form-label" for="lastName">Last Name</label>
                     </div>
-  
+
                   </div>
                 </div>
-  
+
                 <div class="row mb-4">
                   <div class="col-md-12  d-flex align-items-center">
-  
+
                     <div class="form-outline datepicker w-100">
-                      <input type="password" id="typePasswordX" class="form-control form-control-lg"/>
+                      <input type="password" id="typePasswordX" class="form-control form-control-lg" formControlName='password'/>
                       <label class="form-label" for="typePasswordX">Password</label>
                     </div>
-  
+
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-12  d-flex align-items-center">
-  
+
                     <div class="form-outline datepicker w-100">
                       <div class="form-group">
-                        <input type="file" class="form-control-file" id="profileImage" style="background-color: rgb(255, 255, 255); border-radius: 5px;">
-                        <label for="profileImage" class="form-label">Upload profile</label>
+                        <input type="file" class="form-control-file"
+                        id="" style="background-color: rgb(255, 255, 255); border-radius: 5px;"
+                        multiple (change)="selectImage($event)" >
+                        <label for="" class="form-label">Upload profile</label>
                     </div>
                     </div>
-  
+
                   </div>
                 </div>
 
                 <div class="d-flex">
-                <a routerLink="/menu" type="button" class="btn buttonsummit">
+                  <button type="submit" class="btn buttonsummit" (click)="signup()"><b>submit</b></button>&nbsp;
+                <!-- <a routerLink="/menu" type="button" class="btn buttonsummit">
                     <b>submit</b>
-                </a>
+                </a> -->
                 </div>
 
               </form>

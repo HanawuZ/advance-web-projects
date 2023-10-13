@@ -13,6 +13,9 @@ import { StatustableComponent } from './pages/admin/statustable/statustable.comp
 import { NavbarComponent } from './navbar/navbar.component';
 import { SingupComponent } from './pages/admin/singup/singup.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -26,12 +29,16 @@ import { ProfileComponent } from './pages/admin/profile/profile.component';
     StatustableComponent,
     NavbarComponent,
     SingupComponent,
-    ProfileComponent
+    ProfileComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
