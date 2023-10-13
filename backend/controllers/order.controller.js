@@ -52,14 +52,42 @@ async function insertOrder(req, res, next) {
             table_id: table_id,
             total_price: newTotalPrice,
         })
-    
-        Order.findOneAndUpdate({ table_id: table_id }, data, { new: true })
-        .then((result) => {
-            console.log(result)
-            res.status(201).json({ message: "Complete add data" })
-        }).catch((err) => {
-            res.status(501).json({ message: "Cannot add data" })
-        })
+        console.log(data);
+        Order.findOneAndUpdate(
+          { table_id: table_id },
+          {
+            $set: { order_food: updateOrderedFood, total_price: newTotalPrice },
+          },
+          { new: true }
+        )
+          .then((result) => {
+            if (!result) {
+              // If no existing order is found, create a new one
+              const data = new Order({
+                order_food: updateOrderedFood,
+                table_id: table_id,
+                total_price: newTotalPrice,
+              });
+
+              data
+                .save()
+                .then((newResult) => {
+                  console.log(newResult);
+                  res.status(201).json({ message: "Complete add data" });
+                })
+                .catch((err) => {
+                  console.log("err: " + err);
+                  res.status(501).json({ message: "Cannot add data" });
+                });
+            } else {
+              console.log(result);
+              res.status(201).json({ message: "Complete add data" });
+            }
+          })
+          .catch((err) => {
+            console.log("err: " + err);
+            res.status(501).json({ message: "Cannot add data" });
+          });
 
     } 
     // Else create new order

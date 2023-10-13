@@ -14,7 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SingupComponent } from './pages/admin/singup/singup.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { AdminCheckbillComponent } from './pages/admin/admincheckbill/admincheckbill.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +30,7 @@ import { AdminCheckbillComponent } from './pages/admin/admincheckbill/admincheck
     ProfileComponent,
     AdminCheckbillComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
