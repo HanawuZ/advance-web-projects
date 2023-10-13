@@ -15,7 +15,7 @@ import { SingupComponent } from './pages/admin/singup/singup.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AdminCheckbillComponent } from './pages/admin/admincheckbill/admincheckbill.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     SingupComponent,
     ProfileComponent,
-
+AdminCheckbillComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,9 +38,13 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
+
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

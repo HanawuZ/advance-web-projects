@@ -19,26 +19,99 @@ async function listOrder(req, res, next) {
 }
 
 async function insertOrder(req, res, next) {
+    const order_foods = req.body.order_foods
+    const table_id = req.body.table_id
+    
+    order_foods.forEach(async (order_food) => {
+        await Ordered_food.findOneAndDelete( {_id : order_food._id} )
+    });
+    
+    // Find existing order with this table_id
+    const existedOrder = await Order.findOne({ table_id: table_id })
 
-    const OrderedCoffee = await Ordered_food.findOne({ _id: "65264d2bb8fb5cfa7a07378b" }).populate("food")
-    console.log(OrderedCoffee)
+    // If order with this table_id is already exist //todo
+    if (existedOrder) {
 
-    const total_price = OrderedCoffee.amount * OrderedCoffee.food.price
-    console.log(total_price)
-    const sample = new Order({
-        order_food: [OrderedCoffee],
-        table_id: 1,
-        total_price: total_price,
-    })
+        // define updated order foods list
+        let updateOrderedFood = existedOrder.order_food
+        
+        // define incoming order foods list
+        const incomingOrderedFood = order_foods
+
+        let newTotalPrice = existedOrder.total_price
+
+        // const new_order_foods = order_foods;
+
+        for (let i = 0; i < incomingOrderedFood.length; i++) {
+            updateOrderedFood.push(incomingOrderedFood[i])
+            newTotalPrice = newTotalPrice + incomingOrderedFood[i].amount * incomingOrderedFood[i].food.price   
+        }
+
+        const data = new Order({
+            order_food: updateOrderedFood,
+            table_id: table_id,
+            total_price: newTotalPrice,
+        })
+        console.log(data);
+        Order.findOneAndUpdate(
+          { table_id: table_id },
+          {
+            $set: { order_food: updateOrderedFood, total_price: newTotalPrice },
+          },
+          { new: true }
+        )
+          .then((result) => {
+            if (!result) {
+              // If no existing order is found, create a new one
+              const data = new Order({
+                order_food: updateOrderedFood,
+                table_id: table_id,
+                total_price: newTotalPrice,
+              });
+
+              data
+                .save()
+                .then((newResult) => {
+                  console.log(newResult);
+                  res.status(201).json({ message: "Complete add data" });
+                })
+                .catch((err) => {
+                  console.log("err: " + err);
+                  res.status(501).json({ message: "Cannot add data" });
+                });
+            } else {
+              console.log(result);
+              res.status(201).json({ message: "Complete add data" });
+            }
+          })
+          .catch((err) => {
+            console.log("err: " + err);
+            res.status(501).json({ message: "Cannot add data" });
+          });
+
+    } 
+    // Else create new order
+    else {
+        let total_price = 0
+        for (let i = 0; i < order_foods.length; i++) {
+            total_price = total_price + order_foods[i].amount * order_foods[i].food.price
+        }
+
+        const data = new Order({
+            order_food: order_foods,
+            table_id: table_id,
+            total_price: total_price,
+        })
+
+        data.save().then((result) => {
+            console.log(result)
+            res.status(201).json({ message: "Complete add data" })
+        }).catch((err) => {
+            res.status(501).json({ message: "Cannot add data" })
+        })
 
 
-
-    sample.save().then((result) => {
-        console.log(result)
-        res.status(201).json({ message: "Complete add data" })
-    }).catch((err) => {
-        res.status(501).json({ message: "Cannot add data" })
-    })
+    }    
 }
 
 
@@ -60,7 +133,7 @@ async function getOrder(req, res, next) {
             res.status(200).json(data)
         })
         .catch((err) => {
-            res.status(500).json({ message: "Cannot get data" })
+            res.status(500).json({ message: "Cannot get order" })
         })
 }
 

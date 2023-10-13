@@ -51,7 +51,7 @@ async function insertOrderedFood(req, res, next) {
 
     const Data = new Ordered_food({
         food: food,
-        amount: 0,
+        amount: 1,
         discription: "",
     })
 
