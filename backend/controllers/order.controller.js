@@ -22,8 +22,9 @@ async function insertOrder(req, res, next) {
     const order_foods = req.body.order_foods
     let newOrderFoods = []
     order_foods.forEach(async (order_food_id) => {
-        const ordered_food = Ordered_food.findOne({ _id: order_food_id }).populate("food")
+        const ordered_food = await Ordered_food.findOne({ _id: order_food_id }).populate("food")
         newOrderFoods.push(ordered_food)
+        const _ = await Ordered_food.findOneAndDelete({ _id: order_food_id })
     });
 
     let total_price = 0
