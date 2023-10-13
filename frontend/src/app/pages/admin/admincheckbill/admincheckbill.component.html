@@ -11,7 +11,7 @@
                 <hr>
                 <div class="d-flex justify-content-between">
                     <h6>ยอดชำระสุทธิ</h6>
-                    <h6>{{order.total_price}} บาท</h6>
+                    <h6>${{order.total_price}}</h6>
                 </div>
                 <p class="text-center">*** ขอบคุณที่ใช้บริการ***</p>
             </div>
@@ -36,7 +36,7 @@
                 <div class="row" style="margin-left: 15%;">
                     <div class="col">{{item.food.name}}</div>
                     <div class="col">{{item.amount}}</div>
-                    <div class="col">{{item.food.price}} บาท</div>
+                    <div class="col">${{item.food.price}}</div>
                 </div>
             </div>
             <div class="d-flex justify-content-end pt-5 pb-5">

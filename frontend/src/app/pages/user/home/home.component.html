@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="row gy-5">
-                        <div *ngFor="let item of foods; index as i;" class="col-lg-4 menu-item">
+                        <div *ngFor="let item of foods; index as i;" class="col-lg-4 menu-item mb-5">
                             <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img
                                    [src]="foods[i].picture" class="menu-img img-fluid" alt=""></a>
                             <h4>{{foods[i].name}}</h4>
@@ -36,8 +36,10 @@
                             <p class="price">
                                 ${{foods[i].price}}
                             </p>
-                            <button class="btn" style="background-color:#ff0000; color:white; width: 80%;" (click)="orderFood(foods[i]._id)">
-                                <h5>หยิบใส่ตะกร้า</h5>
+                            <button class="btn btn-danger" style="width: 80%;" (click)="orderFood(foods[i]._id)">
+                                <div class="d-flex align-items-center">
+                                    <h5 style="margin: 0 auto;">Add to cart</h5>
+                                </div>
                             </button>
                         </div>
 
