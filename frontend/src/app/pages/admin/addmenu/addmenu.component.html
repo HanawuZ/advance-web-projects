@@ -14,11 +14,25 @@
                     <label for="foodName"><b>ชื่อเมนู</b></label>
                     <input type="text" class="form-control w-50" id="foodName" placeholder="ชื่ออาหาร"
                     formControlName="name">
+                    <div
+                    *ngIf="insertFoodForm.get('name')?.invalid && (insertFoodForm.get('name')?.dirty || insertFoodForm.get('name')?.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="insertFoodForm.get('name')?.errors?.['required']">
+                      name is required
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                     <label for="foodPrice"><b>ราคา</b></label>
                     <input type="number" class="form-control w-50" id="foodPrice" placeholder="ราคา"
                     formControlName="price">
+                    <div
+                      *ngIf="insertFoodForm.get('price')?.invalid && (insertFoodForm.get('price')?.dirty || insertFoodForm.get('price')?.touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="insertFoodForm.get('price')?.errors?.['required']">
+                        price is required
+                      </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="foodImage"><b>อัปโหลดรูปภาพ</b></label>
@@ -29,7 +43,7 @@
                     <a routerLink="/menu" type="button" class="btn buttonback">
                         <b>ย้อนกลับ</b>
                     </a>
-                    <a routerLink="/menu" type="button" class="btn buttonaddmenu" (click)="insertFood()">
+                    <a  type="button" class="btn buttonaddmenu" (click)="insertFood()">
                         <i class="fa-solid fa-circle-plus fa-lg"
                             style="color: #ffffff; margin-right: 5px;"></i><b>เพิ่มเมนู</b>
                     </a>

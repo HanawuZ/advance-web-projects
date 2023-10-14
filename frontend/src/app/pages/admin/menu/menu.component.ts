@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menu',
@@ -6,6 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
+  constructor(private router: Router) { }
   api = 'http://localhost:3000/foods';
   foods: any[] = [];
 
@@ -26,8 +29,10 @@ export class MenuComponent {
     })
       .then(response => response.json())
       .then(data => {
+        Swal.fire('DELETE success!', 'food removed!!', 'success').then(() => {
+          this.getFood();
+        });
         console.log(data);
-        this.getFood();
       })
       .catch(error => console.error(error));
   }
