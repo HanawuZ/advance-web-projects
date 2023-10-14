@@ -23,3 +23,44 @@ h6 {
     background: #FF3FA4;
     color: rgb(255, 255, 255);
 }
+
+.section-header {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.section-header h2 {
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    color: #7f7f90;
+    text-transform: uppercase;
+    font-family: "Open Sans",
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        "Noto Sans",
+        "Liberation Sans",
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+.section-header p {
+    margin: 0;
+    font-size: 60px;
+    font-weight: 800;
+    font-family: "Amatic SC",
+        sans-serif;
+}
+
+.section-header p span {
+    color: #ce1212;
+}

@@ -7,6 +7,7 @@ const adminRoutes = require('./routes/admin.routes')
 const orderRoutes = require('./routes/order.routes')
 const orderFoodRoutes = require('./routes/orderFood.routes')
 const paymentRoutes = require('./routes/payment.routes')
+const tableRoutes = require('./routes/table.routes')
 const signup = require('./routes/singup.routes')
 const signin = require('./routes/signin.routes')
 const { dumpFoods } = require('./samples/food.samples')
@@ -16,11 +17,11 @@ const { dumpTables, dumpStatus }= require('./samples/table.samples')
 async function dumpData(){
 
     // If you want to dump which data, just uncomment it.
-    // await dumpFoods()
+    await dumpFoods()
     // await dumpOrderedFoods()
-    // await dumpAdmins()
-    // await dumpStatus()
-    // await dumpTables()
+    await dumpAdmins()
+    await dumpStatus()
+    await dumpTables()
 }
 
 app.use((req, res, next) => {
@@ -34,7 +35,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 connectToDatabase()
- dumpData()
+//  dumpData()
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
@@ -47,6 +48,7 @@ app.use('/',adminRoutes)
 app.use('/',orderFoodRoutes)
 app.use('/',orderRoutes)
 app.use('/',paymentRoutes)
+app.use('/',tableRoutes)
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })

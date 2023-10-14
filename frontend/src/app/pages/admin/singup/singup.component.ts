@@ -15,7 +15,7 @@ export class SingupComponent {
   api: string = "http://localhost:3000/signup";
   // constructor(private router: Router, private http: HttpClient) { } // เพิ่ม private http: HttpClient
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.adminForm = this.fb.group({
       user_name: ['', Validators.required,Validators.pattern('/^([a-z]*)$/')],
       firstname: ['',Validators.required,Validators.pattern('/^([A-Z][a-z]*)$/')],
@@ -74,6 +74,8 @@ export class SingupComponent {
         console.error(error);
         // Handle errors, for example, display an error message
       });
+       // go to login page
+       this.router.navigate(['/login']);
   }
   data: any[] = [];
   getGender() {

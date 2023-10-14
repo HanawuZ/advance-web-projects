@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listmenu',
@@ -10,7 +11,7 @@ import { DataService } from 'src/app/service/data.service';
 export class ListmenuComponent implements OnInit {
   orderedFood: any[] = [];
   tableId: string = '1';
-  constructor(private orderService: DataService) {}
+  constructor(private orderService: DataService,  private router: Router) {}
 
   placeOrder() {
     const orderData = {
@@ -29,7 +30,11 @@ export class ListmenuComponent implements OnInit {
         console.error('Error placing the order:', error);
       }
     );
-    location.reload();
+    this.router.navigate(['/home']);
+     // Wait for a short delay and then reload the page
+     setTimeout(() => {
+      location.reload();
+    }, 10);
   }
 
   getOrderedFood() {
