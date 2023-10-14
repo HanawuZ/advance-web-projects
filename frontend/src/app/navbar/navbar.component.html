@@ -28,7 +28,7 @@
                 </li>
                 <li *ngIf="isAdmin">
                     <a class="btn nav-link scrollto" (click)="logout()">
-                        <i class="fa-solid fa-right-from-bracket" style="font-size: 25px; margin-left: -25px;"></i>
+                        <i class="fa-solid fa-right-from-bracket" [ngStyle]="{'margin-left': '-25px', 'font-size': '25px'}"></i>
                     </a>
                 </li>
             </ul>
