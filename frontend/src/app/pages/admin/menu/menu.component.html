@@ -30,12 +30,12 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of foods index as i;">
-                      <td><img src="assets/img/menu/menu-item-1.png" width="50px" height="50px" alt="Image 1"></td>
+                      <td><img [src]="foods[i].picture" width="50px" height="50px" alt="Image 1"></td>
                       <td >{{foods[i].name}}</td>
                       <td>{{foods[i].price}}</td>
                       <td>
                         <button type="button" class="btn btn-light btn-sm px-3">
-                          <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000000;"></i>
+                          <a href="/addmenu"><i class="fa-solid fa-pen-to-square fa-lg" style="color: #000000;"></i></a>
                         </button>
                       </td>
                       <td>

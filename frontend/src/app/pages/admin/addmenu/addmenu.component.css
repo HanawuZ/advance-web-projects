@@ -14,8 +14,17 @@
     background-color: #FFC7EA;
     border-radius: 30px; 
     padding: 30px; 
-    height: 60%;
+    height: 60%;   
 }
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  
 
 label{
     font-size: x-large;

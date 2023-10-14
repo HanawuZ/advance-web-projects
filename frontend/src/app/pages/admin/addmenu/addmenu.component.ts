@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms'; // Import necessary modules
 
 @Component({
   selector: 'app-addmenu',
@@ -7,31 +7,50 @@ import { Component } from '@angular/core';
   styleUrls: ['./addmenu.component.css']
 })
 export class AddmenuComponent {
-
-  api : string = "http://localhost:3000/food";
+  api: string = "http://localhost:3000/food";
   name: string = "";
   picture: string = "";
   price: Number = 0;
 
-  // Method for login
-  insertFood(){
-    const data = {
-      name: this.name,
-      picture: this.picture,
-      price: this.price,
-    }
+  // Create a FormGroup with form controls
+  insertFoodForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    picture: new FormControl('', Validators.required),
+    price: new FormControl(0, Validators.required),
+  });
 
-    // http post for sign in
+  previewLoaded: boolean = false;
+
+  // Method for adding food
+  insertFood() {
+    // Use the value of the FormGroup
+    const data = this.insertFoodForm.value;
+
+    // Make an HTTP POST request
     fetch(this.api, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-      // console.log(this.foods);
-    })
-    .catch(error => console.error(error));
-  } 
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => console.error(error));
+  }
+
+  onChangeImg(e: any) {
+    if (e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.previewLoaded = true;
+        // Update the FormGroup with the new image value
+        this.insertFoodForm.patchValue({
+          picture: reader.result?.toString()
+        });
+      }
+    }
+  }
 }
