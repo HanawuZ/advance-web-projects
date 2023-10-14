@@ -25,11 +25,7 @@ const findUser = (user_name) => {
     Admin.findOne({ user_name: user_name })
       .then((data) => {
         if (data) {
-          resolve({
-            id: data._id,
-            user_name: data.user_name,
-            password: data.password,
-          });
+          resolve(data);
         } else {
           reject(new Error("Cannont find username!"));
         }
@@ -45,17 +41,24 @@ router.route('/signin')
         const playload = {
           user_name: req.body.user_name,
           password: req.body.password,
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
-          gender: req.body.gender,
         };
-        console.log(playload);
+
+        console.log(playload)
+
         try {
             const result = await findUser(playload.user_name);
             const loginStatus = await compareHash(playload.password, result.password);
             const status = loginStatus.status;
             if (status) {
-                const token = jwt.sign(result, key, { expiresIn: 86400 });
+              console.log(result)
+                const user = {
+                  user_name: result.user_name,
+                  password: result.password,
+                  firstname: result.firstname,
+                  lastname: result.lastname,
+                  Gender: result.Gender
+                }
+                const token = jwt.sign(user, key, { expiresIn: 86400 });
                 res.status(200).json({ result, token, status });
             } else {
                 res.status(200).json({ status });
