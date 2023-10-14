@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-listmenu',
@@ -10,8 +12,17 @@ import { Router } from '@angular/router';
 })
 export class ListmenuComponent implements OnInit {
   orderedFood: any[] = [];
-  tableId: string = '1';
-  constructor(private orderService: DataService,  private router: Router) {}
+  tableId?: string;
+  constructor(private orderService: DataService,
+    private router: Router,
+    private activateRoute: ActivatedRoute) {
+    this.activateRoute.paramMap.subscribe(params => {
+      const id = params.get('id');
+      this.tableId = id?.toString();
+      // Use the 'id' data in your component
+    });
+
+  }
 
   placeOrder() {
     const orderData = {
@@ -31,8 +42,8 @@ export class ListmenuComponent implements OnInit {
       }
     );
     this.router.navigate(['/home']);
-     // Wait for a short delay and then reload the page
-     setTimeout(() => {
+    // Wait for a short delay and then reload the page
+    setTimeout(() => {
       location.reload();
     }, 10);
   }
@@ -64,5 +75,9 @@ export class ListmenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOrderedFood();
+  }
+
+  navigateToCheckBill() {
+    this.router.navigate(['checkbill', this.tableId]);
   }
 }
