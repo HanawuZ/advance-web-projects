@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { HttpHeaders, HttpClient } from '@angular/common/http'; // เพิ่ม HttpClient
 import { map } from 'rxjs';
 import { Validator } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-singup',
@@ -17,20 +18,20 @@ export class SingupComponent {
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.adminForm = this.fb.group({
-      user_name: ['', Validators.required,Validators.pattern('/^([a-z]*)$/')],
-      firstname: ['',Validators.required,Validators.pattern('/^([A-Z][a-z]*)$/')],
-      lastname: ['',Validators.required,Validators.pattern('/^([A-Z][a-z]*)$/')],
-      password: ['',Validators.required,Validators.pattern('/^.{8,}$/')],
+      user_name: ['', Validators.required, Validators.pattern('B[0-9]{7}')],
+      firstname: ['',Validators.required, Validators.pattern('[A-Z][a-z]*')],
+      lastname: ['',Validators.required, Validators.pattern('[A-Z][a-z]*')],
+      password: ['',Validators.required, Validators.pattern('^.{8,}')],
       Gender: [null,Validators.required],
       profile_picture: [null,Validators.required], // ให้แน่ใจว่า profile_picture ถูกเพิ่มตรงนี้
     });
   }
 
   adminForm = new FormGroup({
-    user_name: new FormControl('', [Validators.required,Validators.pattern('/^([A-Z][a-z]*)$/')]),
-    firstname: new FormControl('', [Validators.required,Validators.pattern('/^([A-Z][a-z]*)$/')]),
-    lastname: new FormControl('', [Validators.required,Validators.pattern('/^([A-Z][a-z]*)$/')]),
-    password: new FormControl('', [Validators.required,Validators.pattern('/^.{8,}$/')]),
+    user_name: new FormControl('', [Validators.required, Validators.pattern('B[0-9]{7}')]),
+    firstname: new FormControl('', [Validators.required, Validators.pattern('[A-Z][a-z]*')]),
+    lastname: new FormControl('', [Validators.required, Validators.pattern('[A-Z][a-z]*')]),
+    password: new FormControl('', [Validators.required, Validators.pattern('^.{8,}')]),
     Gender: new FormControl(null, Validators.required),
     profile_picture: new FormControl(null, [Validators.required]), // ให้แน่ใจว่า profile_picture ถูกเพิ่มตรงนี้
   });
@@ -59,7 +60,45 @@ export class SingupComponent {
       formData.append("profile_picture", profilePicture, profilePicture.name);
     }
 
+    if (this.adminForm === null) {
+      return;
+    }
+
     if (this.adminForm.invalid) {
+      let errorMessage = 'กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้องดังนี้:';
+
+      if (this.adminForm.get('user_name')?.hasError('required')) {
+        errorMessage += '\n- กรอกชื่อผู้ใช้';
+      }
+      if (this.adminForm.get('user_name')?.hasError('pattern')) {
+        errorMessage += '\n- รูปแบบชื่อผู้ใช้ไม่ถูกต้อง';
+      }
+      if (this.adminForm.get('firstname')?.hasError('required')) {
+        errorMessage += '\n- กรอกชื่อ';
+      }
+      if (this.adminForm.get('firstname')?.hasError('pattern')) {
+        errorMessage += '\n- รูปแบบชื่อไม่ถูกต้อง';
+      }
+      if (this.adminForm.get('lastname')?.hasError('required')) {
+        errorMessage += '\n- กรอกนามสกุล';
+      }
+      if (this.adminForm.get('lastname')?.hasError('pattern')) {
+        errorMessage += '\n- รูปแบบนามสกุลไม่ถูกต้อง';
+      }
+      if (this.adminForm.get('password')?.hasError('required')) {
+        errorMessage += '\n- กรอกรหัสผ่าน';
+      }
+      if (this.adminForm.get('password')?.hasError('pattern')) {
+        errorMessage += '\n- รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร';
+      }
+      if (this.adminForm.get('Gender')?.hasError('required')) {
+        errorMessage += '\n- เลือกเพศ';
+      }
+      if (this.adminForm.get('profile_picture')?.hasError('required')) {
+        errorMessage += '\n- อัปโหลดรูปโปรไฟล์';
+      }
+
+      Swal.fire('ข้อมูลไม่ถูกต้อง', errorMessage, 'error');
       return;
     }
 
@@ -89,6 +128,4 @@ export class SingupComponent {
       this.data = data; // กำหนดค่าข้อมูลให้กับตัวแปร data
     });
   }
-
-
 }
