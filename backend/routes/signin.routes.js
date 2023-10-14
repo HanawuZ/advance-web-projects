@@ -25,6 +25,7 @@ const findUser = (user_name) => {
     Admin.findOne({ user_name: user_name })
       .then((data) => {
         if (data) {
+          console.log(data);
           resolve(data);
         } else {
           reject(new Error("Cannont find username!"));
@@ -60,6 +61,7 @@ router.route('/signin')
           Gender: result.Gender,
           profile_picture: result.profile_picture,
         }
+        console.log(user)
         const token = jwt.sign(user, key, { expiresIn: 86400 });
         res.status(200).json({user, token, status });
       } else {

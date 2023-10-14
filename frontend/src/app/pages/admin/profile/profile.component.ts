@@ -22,7 +22,7 @@ export class ProfileComponent {
     lastname: new FormControl('', [Validators.required, Validators.pattern('[A-Z][a-z]*')]),
     password: new FormControl('', [Validators.required, Validators.pattern('^.{8,}')]),
     Gender: new FormControl(null, Validators.required),
-    profile_picture: new FormControl(null, [Validators.required]), // ให้แน่ใจว่า profile_picture ถูกเพิ่มตรงนี้
+    profile_picture: new FormControl('', [Validators.required]), // ให้แน่ใจว่า profile_picture ถูกเพิ่มตรงนี้
   });
 
   data: any[] = [];
@@ -46,6 +46,23 @@ export class ProfileComponent {
     const file = event.target.files[0];
     if (file) {
       this.user.profile_picture = file.name;
+    }
+  }
+  
+  previewLoaded: boolean = false;
+
+  onChangeImg(e: any) {
+    if (e.target.files.length > 0) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.previewLoaded = true;
+        // Update the FormGroup with the new image value
+        this.adminForm.patchValue({
+          profile_picture: reader.result?.toString(),
+        });
+      };
     }
   }
 

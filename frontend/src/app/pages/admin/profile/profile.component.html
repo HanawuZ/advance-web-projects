@@ -72,7 +72,7 @@
   
                     <div class="form-outline datepicker w-100">
                       <div class="form-group">
-                        <input type="file" [value]="user.profile_picture" class="form-control-file" id="profileImage"  
+                        <input type="file" [value]="user.profile_picture" class="form-control-file" id="profileImage"  (change)="onChangeImg($event)"
                         style="background-color: rgb(255, 255, 255); border-radius: 5px;">
                         <label for="profileImage" class="form-label">Upload profile</label>
                       </div>
@@ -95,7 +95,9 @@
 
         <div class="col-4 image_addmenu text-center" style="justify-content: center; align-self: center;">
             <h5 style="margin-bottom: 10%;"><i class="fa-regular fa-image" style="margin-right: 2%; text-align: start;"></i>Profile</h5>
-            <img class="round-image" [src]="user.profile_picture" alt="รูปภาพ" >
+            <img *ngIf="!previewLoaded" class="img-thumbnail" [src]="user.profile_picture"
+            style="border-radius: 20px;" width="90%">
+            <img *ngIf="previewLoaded" [src]="adminForm.value.profile_picture" alt="Food Image" style="border-radius: 20px;" width="90%">
         </div>
     </div>
 </div>
