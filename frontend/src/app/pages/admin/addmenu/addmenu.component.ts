@@ -11,6 +11,7 @@ export class AddmenuComponent {
   name: string = "";
   picture: string = "";
   price: Number = 0;
+  
 
   // Create a FormGroup with form controls
   insertFoodForm = new FormGroup({
@@ -25,11 +26,13 @@ export class AddmenuComponent {
   insertFood() {
     // Use the value of the FormGroup
     const data = this.insertFoodForm.value;
-
+    const token = localStorage.getItem("token")
     // Make an HTTP POST request
     fetch(this.api, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        "authorization": token!},
       body: JSON.stringify(data)
     })
       .then(response => response.json())

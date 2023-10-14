@@ -14,11 +14,13 @@ const { dumpFoods } = require('./samples/food.samples')
 const { dumpAdmins }= require('./samples/admin.samples')
 const { dumpOrderedFoods }= require('./samples/ordered_food.samples')
 const { dumpTables, dumpStatus }= require('./samples/table.samples')
+const { dumpGenders } = require('./samples/gender.samples')
 async function dumpData(){
 
     // If you want to dump which data, just uncomment it.
     await dumpFoods()
     // await dumpOrderedFoods()
+    await dumpGenders()
     await dumpAdmins()
     await dumpStatus()
     await dumpTables()

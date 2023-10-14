@@ -9,11 +9,12 @@ const makeHash = async (plainText) => {
 async function dumpAdmins(){
     const password = await makeHash("123456")
     const admin1 = new Admin({
-        admin_id: 1,
+        user_name: "cc",
         firstname: "John",
         lastname: "Doe",
         password: password,
-        gender : "male"
+        Gender : "male",
+        profile_picture: ""
     })
 
     admin1.save()

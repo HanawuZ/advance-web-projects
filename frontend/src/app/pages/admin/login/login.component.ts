@@ -40,7 +40,7 @@ export class LoginComponent {
       })
       .then((data) => {
         localStorage.setItem('token', data.token);
-        localStorage.setItem('data', JSON.stringify(data.result));
+        localStorage.setItem('data', JSON.stringify(data.user));
         
         console.log(data);
         console.log(localStorage.getItem('token'));

@@ -21,8 +21,14 @@ export class MenuComponent {
   }
 
   deleteFood(id: any) {
+    const token = localStorage.getItem("token")
+
     fetch("http://localhost:3000/food" + '/' + id, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        "authorization": token!
+      }
     })
       .then(response => response.json())
       .then(data => {
