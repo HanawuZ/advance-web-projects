@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Food = require('./food')
 const { Schema } = mongoose;
 
 const ordered_food = new Schema({
@@ -6,7 +7,7 @@ const ordered_food = new Schema({
     // food_id: Number,
     amount: Number,
     discription: String,
-    food: {type: mongoose.Schema.Types.ObjectId, ref: "Food"}
+    food: {type: Food.schema}
 
 })
 

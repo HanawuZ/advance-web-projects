@@ -12,10 +12,11 @@ export class CheckbillComponent implements OnInit {
   constructor() {}
 
   getOrdered() {
-    fetch('http://localhost:3000/order')
+    fetch(`http://localhost:3000/order`)
       .then((response) => response.json())
       .then((data) => {
-        this.order = data[0];
+        this.order = data;
+        // this.order = data[0];
         console.log(this.order);
       })
       .catch((error) => console.error(error));

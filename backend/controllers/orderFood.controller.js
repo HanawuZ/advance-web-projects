@@ -4,7 +4,7 @@ const Food = require("../models/food")
 async function list_ordered_food(req, res, next) {
 
     
-    Ordered_food.find({}).populate("food")
+    Ordered_food.find({})
         .then((result) => {
             console.log(result)
             res.status(200).json(result)

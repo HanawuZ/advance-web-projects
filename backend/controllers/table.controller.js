@@ -1,11 +1,11 @@
-const Tables = require("../models/tables")
+const { Tables, Status } = require("../models/tables")
 async function listTables(req, res, next) {
     Tables.find({})
         .then((result) => {
             res.status(200).json(result)
         })
         .catch((err) => {
-            res.status(500).json({ message: "Cannot get data" })
+            res.status(500).json({ message: "Cannot get table data" })
         })
 }
 
@@ -25,7 +25,7 @@ async function insertTable(req, res, next) {
 
 async function insertstatus(req, res, next) {
     const sample_status = new Status({
-        tables_id: 1,
+        // tables_id: 1,
         status_name: "ไม่ว่าง"
     })
     sample_status.save().then((result) => {
