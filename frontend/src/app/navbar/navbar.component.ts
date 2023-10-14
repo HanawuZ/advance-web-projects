@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,8 +8,9 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   isAdmin: boolean;
+  tableId: string = '1';
 
-  constructor() {
+  constructor(private router: Router) {
     const token = localStorage.getItem('token');
     this.isAdmin = token !== null;
   }
@@ -33,5 +35,11 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     this.getOrderedFood();
+  }
+
+  navigateToListMenu() {
+    console.log("tableId", this.tableId)
+    this.router.navigate(['listmenu', this.tableId],);
+      
   }
 }

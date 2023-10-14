@@ -8,7 +8,6 @@ import { OnInit, OnChanges } from '@angular/core';
 export class HomeComponent implements OnInit{
   api = 'http://localhost:3000/foods';
   foods: any[] = [];
-  
 
   orderFood(id : any) {
     // TODO: Add the food to the order
@@ -35,6 +34,5 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
       this.getFood()
   }
-
 
 }

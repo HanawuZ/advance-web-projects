@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent {
   user_name: string = '';
   password: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
   // Method for login
   login() {
     const data = {
@@ -25,7 +26,18 @@ export class LoginComponent {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json(); // ดึงข้อมูลเมื่อสถานะเป็น 200
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'username or password is incorrect.!',
+          })
+          throw new Error('เกิดข้อผิดพลาดในการร้องขอ'); // โยนข้อผิดพลาดเมื่อสถานะไม่ใช่ 200
+        }
+      })
       .then((data) => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('data', JSON.stringify(data.result));
@@ -33,14 +45,13 @@ export class LoginComponent {
         console.log(data);
         console.log(localStorage.getItem('token'));
 
-        // go to home page
-        this.router.navigate(['/home']);
+        Swal.fire('Login success!', 'welcome!!', 'success').then(() => {
+          this.router.navigate(['/home']);
+          setTimeout(() => {
+            location.reload();
+          }, 10);
+        });
 
-        // Wait for a short delay and then reload the page
-        setTimeout(() => {
-          location.reload();
-        }, 10);
-        // console.log(this.foods);
       })
       .catch((error) => console.error(error));
   }

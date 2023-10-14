@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
+const { updateAdmin} = require('../controllers/admin.controller')
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
@@ -111,4 +111,6 @@ router.post('/signup', upload_card.single('profile_picture'), async (req, res) =
     res.status(500).json({ message: 'Cannot insert user to DB' });
   }
 });
+
+router.put("/update", updateAdmin)
 module.exports = router

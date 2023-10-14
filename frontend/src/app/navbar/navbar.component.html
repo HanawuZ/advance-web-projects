@@ -8,8 +8,8 @@
         <nav id="navbar" class="navbar" [ngClass]="{'user-navbar': !isAdmin, 'admin-navbar': isAdmin}">
             <ul>
                 <li><a a routerLink="/home" routerLinkActive="active" class="nav-link scrollto active">Home</a></li>
-                <li *ngIf="!isAdmin">
-                    <a routerLink="listmenu" style="text-decoration: none;">
+                <li *ngIf="!isAdmin" >
+                    <a  (click)="navigateToListMenu()" style="text-decoration: none;">
                         Cart<i class="fa-solid fa-cart-shopping fa-2xl me-3" style="font-size: 25px;" aria-hidden="true"></i>
                         <span class="badge badge-danger" style="margin-left: 2px; margin-bottom: 20px;">{{ orderedItemCount }}</span>
                     </a>
@@ -28,7 +28,7 @@
                 </li>
                 <li *ngIf="isAdmin">
                     <a class="btn nav-link scrollto" (click)="logout()">
-                        <i class="fa-solid fa-right-from-bracket" style="font-size: 25px; margin-left: -25px;"></i>
+                        <i class="fa-solid fa-right-from-bracket" [ngStyle]="{'margin-left': '-25px', 'font-size': '25px'}"></i>
                     </a>
                 </li>
             </ul>

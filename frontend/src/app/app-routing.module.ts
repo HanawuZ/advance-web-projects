@@ -13,8 +13,8 @@ import { ProfileComponent } from './pages/admin/profile/profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'listmenu', component: ListmenuComponent },
-  { path: 'checkbill', component: CheckbillComponent },
+  { path: 'listmenu/:id', component: ListmenuComponent },
+  { path: 'checkbill/:id', component: CheckbillComponent },
   { path: 'login', component: LoginComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'addmenu', component: AddmenuComponent },
