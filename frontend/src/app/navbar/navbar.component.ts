@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -30,7 +31,13 @@ export class NavbarComponent {
 
   logout() {
     localStorage.removeItem('token');
-    location.reload();
+   
+    Swal.fire('Logout success!', 'welcome!!', 'success').then(() => {
+      this.router.navigate(['/home']);
+      setTimeout(() => {
+        location.reload();
+      }, 10);
+    });
   }
 
   ngOnInit(): void {

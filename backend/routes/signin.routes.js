@@ -37,14 +37,11 @@ const findUser = (user_name) => {
 
 
 router.route('/signin')
-  .post(async (req, res) => {
-    const playload = {
-      user_name: req.body.user_name,
-      password: req.body.password,
-      // firstname: req.body.firstname,
-      // lastname: req.body.lastname,
-      // gender: req.body.gender,
-    };
+    .post(async (req, res) => {
+        const playload = {
+          user_name: req.body.user_name,
+          password: req.body.password,
+        };
 
     console.log(playload)
 
