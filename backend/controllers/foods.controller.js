@@ -26,6 +26,11 @@ async function insertFood(req, res, next) {
     })
 }
 
+/* 
+
+
+*/
+
 async function updateFood(req, res, next) {
     const id = req.params.id;
 
@@ -34,7 +39,7 @@ async function updateFood(req, res, next) {
         price : req.body.price,
         description : req.body.description,
     }
-    Food.findOneAndUpdate({ id: id }, updatedFoodData, { new: true })
+    Food.findOneAndUpdate({ _id: id }, updatedFoodData, { new: true })
         .then((result) => {
             if (!result) {
                 return res.status(404).json({ message: 'Food not found' });
@@ -64,7 +69,7 @@ async function deleteFood(req, res, next) {
 
 async function getFoodByID(req, res, next) {
     const id = req.params.id
-    Food.findOne({ id: id })
+    Food.findOne({ _id: id })
         .then((result) => {
             res.status(200).json(result)
         })

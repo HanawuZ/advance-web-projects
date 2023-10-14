@@ -79,7 +79,9 @@ const upload_card = multer({
 //const upload = multer({ storage: storage });
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
-router.post('/signup', upload_card.single('profile_picture'), async (req, res) => {
+
+// * Used
+router.post('/signup', async (req, res) => {
   try {
     const hashText = await makeHash(req.body.password);
 
@@ -89,15 +91,9 @@ router.post('/signup', upload_card.single('profile_picture'), async (req, res) =
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       Gender: req.body.Gender,
+      profile_picture: req.body.profile_picture
       // Add other fields like profile_picture if needed
     };
-
-    if (req.file) {
-      payload.profile_picture = req.file.path; // ใช้เส้นทางไฟล์ที่อัพโหลดเป็นรูปภาพโปรไฟล์
-    } else {
-      payload.profile_picture = 'เส้นทางรูปภาพเริ่มต้นหรือ URL รูปโปรไฟล์เริ่มต้น';
-    }
-    
 
     const newAdmin = new Admin(payload);
 

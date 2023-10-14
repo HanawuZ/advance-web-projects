@@ -24,7 +24,7 @@ async function compareHash(data, hashData) {
 
 function authorization(req, res, next) {
   const token = req.headers.authorization;
-  console.log(!token)
+  console.log(token)
 
   if (!token) {
     return res.status(401).json({

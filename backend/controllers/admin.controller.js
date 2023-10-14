@@ -1,5 +1,5 @@
 const { Admin, Gender } = require("../models/admin")
-
+const bcrypt = require("bcryptjs");
 const { makeHash } = require('../middlewares/index')
 
 async function insertAdmin(req, res, next) {
@@ -44,7 +44,8 @@ async function updateAdmin(req, res, next) {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         password: password,
-        Gender: req.body.Gender
+        Gender: req.body.Gender,
+        profile_picture: req.body.profile_picture
     };
 
     Admin.findOneAndUpdate({ _id: id }, updatedAdminData, { new: true })

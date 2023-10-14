@@ -114,9 +114,10 @@
 
                   <div class="form-outline datepicker w-100">
                     <div class="form-group">
-                      <input type="file" class="form-control-file" id=""
-                        style="background-color: rgb(255, 255, 255); border-radius: 5px;" multiple
-                        (change)="selectImage($event)">
+                      <label for="foodImage"><b>อัปโหลดรูปภาพ</b></label>
+                    <input type="file" class="form-control-file"     [(ngModel)]="profile_picture" (change)="onChangeImg($event)">
+                      <!-- <input type="file" class="form-control-file" id=""
+                        style="background-color: rgb(255, 255, 255); border-radius: 5px;"> -->
                       <label for="" class="form-label">Upload profile</label>
                     </div>
                   </div>

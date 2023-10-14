@@ -10,7 +10,7 @@ import { StatustableComponent } from './pages/admin/statustable/statustable.comp
 import { AdminCheckbillComponent } from './pages/admin/admincheckbill/admincheckbill.component';
 import { SingupComponent } from './pages/admin/singup/singup.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
-
+import { EditmenuComponent } from './pages/admin/editmenu/editmenu.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'listmenu/:id', component: ListmenuComponent },
@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'admincheckbill', component: AdminCheckbillComponent },
   { path: 'singup', component: SingupComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'editmenu/:id', component: EditmenuComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

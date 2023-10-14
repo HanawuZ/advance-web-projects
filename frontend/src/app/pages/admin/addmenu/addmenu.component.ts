@@ -14,6 +14,7 @@ export class AddmenuComponent {
   picture: string = "";
   price: Number = 0;
 
+
   constructor(private router: Router) { }
   // Create a FormGroup with form controls
   insertFoodForm = new FormGroup({
@@ -47,10 +48,13 @@ export class AddmenuComponent {
       Swal.fire('ข้อมูลไม่ถูกต้อง', errorMessage, 'error');
       return;
     }
+    const token = localStorage.getItem("token")
     // Make an HTTP POST request
     fetch(this.api, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        "authorization": token!},
       body: JSON.stringify(data)
     })
       .then(response => response.json())

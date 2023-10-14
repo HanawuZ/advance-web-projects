@@ -1,0 +1,54 @@
+<div class="container-fluid text-center">
+    <form [formGroup]="updateFoodForm">
+        <div class="text-center pt-5">
+            <button class="btn" style="background-color:#FFC7EA; width: 100%; padding: 10px;">
+                <h4><b>Addmenu</b></h4>
+            </button>
+        </div>
+        <div class="row mt-5">
+            <div class="col-7 me-3"
+                style="background-color: #FFC7EA; border-radius: 30px; padding: 30px; text-align: start;">
+                <h3><i class="fa-solid fa-utensils fa-lg" style="margin-right: 2%;"></i><b>เพิ่มเมนูอาหาร</b></h3>
+
+                <div class="form-group">
+                    <label for="foodName"><b>ชื่อเมนู</b></label>
+                    <input type="text" [value]="foods?.name"  class="form-control w-50" id="foodName" 
+                        formControlName="name">
+                </div>
+                <div class="form-group">
+                    <label for="foodPrice"><b>ราคา</b></label>
+                    <input type="number" [value]="foods?.price" class="form-control w-50" id="foodPrice" 
+                        formControlName="price">
+                </div>
+                <div class="form-group">
+                    <label for="foodImage"><b>อัปโหลดรูปภาพ</b></label>
+                    <input type="file" [value]="foods?.picture" class="form-control-file" [(ngModel)]="picture" (change)="onChangeImg($event)">
+                </div>
+
+                <div class="d-flex" style="text-align: end; margin-top: 7%;">
+                    <a routerLink="/menu" type="button" class="btn buttonback">
+                        <b>ย้อนกลับ</b>
+                    </a>
+                    <a routerLink="/menu" type="button" class="btn buttonaddmenu" (click)="updateFood(foods?._id)">
+                        <i class="fa-solid fa-circle-plus fa-lg"
+                            style="color: #ffffff; margin-right: 5px;"></i><b>เพิ่มเมนู</b>
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-1"></div>
+
+            <div class="col-4 image_addmenu">
+                <h3 style="margin-bottom: 10%;"><b>
+                        <i class="fa-regular fa-image" style="margin-right: 2%; text-align: start;"></i>รูปภาพ</b>
+                </h3>
+                <img *ngIf="previewLoaded" [src]="updateFoodForm.value.picture" alt="Food Image" style="border-radius: 20px;"
+                    width="90%">
+                <img *ngIf="!previewLoaded" [src]="foods?.picture" alt="Food Image" style="border-radius: 20px;" width="90%">
+            </div>
+        </div>
+    </form>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
