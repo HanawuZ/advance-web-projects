@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li *ngIf="isAdmin">
-                    <a routerLink="logout" class="nav-link scrollto">
+                    <a class="btn nav-link scrollto" (click)="logout()">
                         <i class="fa-solid fa-right-from-bracket" style="font-size: 25px; margin-left: -25px;"></i>
                     </a>
                 </li>

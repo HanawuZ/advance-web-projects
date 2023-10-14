@@ -26,6 +26,11 @@ export class NavbarComponent {
       .catch((error) => console.error(error));
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    location.reload();
+  }
+
   ngOnInit(): void {
     this.getOrderedFood();
   }

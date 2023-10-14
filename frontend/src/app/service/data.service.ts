@@ -28,4 +28,5 @@ export class DataService {
     const deleteUrl = `${this.apiUrl}/ordered_food/${_id}`;
     return this.http.delete(deleteUrl);
   }
+
 }
