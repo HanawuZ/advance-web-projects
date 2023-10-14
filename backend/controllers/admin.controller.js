@@ -1,6 +1,6 @@
-const {Admin,Gender} = require("../models/admin")
+const { Admin, Gender } = require("../models/admin")
 
-const  {makeHash} = require('../middlewares/index')
+const { makeHash } = require('../middlewares/index')
 
 async function insertAdmin(req, res, next) {
     const Pass = await makeHash('123456')
@@ -16,24 +16,38 @@ async function insertAdmin(req, res, next) {
         console.log(result)
         res.status(201).json({ message: "Complete add data" })
     })
-    .catch((err) => {
-        console.log(err)
-        res.status(501).json({ message: "Cannot add data" })
-    })
+        .catch((err) => {
+            console.log(err)
+            res.status(501).json({ message: "Cannot add data" })
+        })
 }
 
 async function updateAdmin(req, res, next) {
+
     const id = req.params.id;
 
+    const admin = await Admin.findOne({ _id: id })
+    let password
+    
+    // Check if request password is not equal to password in database   
+    // admin.password is hash password in database
+    // Should decode first
+    const isPasswordCorrect = await bcrypt.compare(req.body.password, admin.password)
+    if (!isPasswordCorrect) {
+        password = await makeHash(req.body.password)
+    } else {
+        password = admin.password
+    }
+    
     const updatedAdminData = {
-        // admin_id: 1,
-        firstname: 'Burger',
-        lastname: 'Kong',
-        password: makeHash('12345ooooo'),
-        gender: 'male'
+        user_name : req.body.user_name,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        password: password,
+        Gender: req.body.Gender
     };
 
-    Admin.findOneAndUpdate({ admin_id: id }, updatedAdminData, { new: true })
+    Admin.findOneAndUpdate({ _id: id }, updatedAdminData, { new: true })
         .then((result) => {
             if (!result) {
                 return res.status(404).json({ message: 'Admin not found' });
@@ -92,4 +106,14 @@ async function insertGender(req, res, next) {
     }
 }
 
-module.exports = { insertAdmin, updateAdmin, deleteAdmin, getAdminByID,insertGender}
+async function getGender(req, res, next){
+    Gender.find({})
+    .then((result) =>{
+        res.status(200).json(result)
+    })
+    .catch((err) =>{
+        console.log(err);
+    })
+}
+
+module.exports = { insertAdmin, updateAdmin, deleteAdmin, getAdminByID, insertGender ,getGender}

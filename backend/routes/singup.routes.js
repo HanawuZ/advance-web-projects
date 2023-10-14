@@ -88,7 +88,7 @@ router.post('/signup', upload_card.single('profile_picture'), async (req, res) =
       password: hashText,
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      Gender: req.body.gender,
+      Gender: req.body.Gender,
       // Add other fields like profile_picture if needed
     };
 
@@ -102,9 +102,9 @@ router.post('/signup', upload_card.single('profile_picture'), async (req, res) =
     const newAdmin = new Admin(payload);
 
     const savedAdmin = await newAdmin.save();
-
-    console.log(savedAdmin);
-    console.log(payload);
+    console.log("payload.Gender"+payload.Gender);
+    console.log("savedAdmin"+savedAdmin);
+    console.log("payload"+payload);
     res.status(200).json({ message: 'Signup successful' });
   } catch (error) {
     console.error(error);

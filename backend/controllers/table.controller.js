@@ -38,13 +38,17 @@ async function insertstatus(req, res, next) {
 
 async function updateTable(req, res, next) {
     const id = req.params.id;
+    const table_status = req.body.table_status;
 
-    const updateTableData = {
-        tables_id: id,
-        order_id: oder_id
-    };
+    const status = await Status.findOne({ status_name: table_status })
 
-    Tables.findOneAndUpdate({ id: id }, updateTableData, { new: true })
+    const updateTableData = { 
+        status: status,
+        tables_id : id
+    }
+
+    console.log("updateTableData",updateTableData)
+    Tables.findOneAndUpdate({ tables_id: id }, updateTableData, {new: true}/*updateTableData, { new: true }*/)
         .then((result) => {
             if (!result) {
                 return res.status(404).json({ message: 'Table not found' });
