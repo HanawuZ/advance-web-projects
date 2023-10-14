@@ -26,6 +26,11 @@ async function insertFood(req, res, next) {
     })
 }
 
+/* 
+
+
+*/
+
 async function updateFood(req, res, next) {
     const id = req.params.id;
 
