@@ -1,5 +1,5 @@
 const { Admin, Gender } = require("../models/admin")
-
+const bcrypt = require("bcryptjs");
 const { makeHash } = require('../middlewares/index')
 
 async function insertAdmin(req, res, next) {
