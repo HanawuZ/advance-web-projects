@@ -62,8 +62,17 @@ router.route('/signin')
           Gender: result.Gender,
           profile_picture: result.profile_picture,
         }
+        const user_1 = {
+          _id: result._id,
+          user_name: result.user_name,
+          password: playload.password,
+          firstname: result.firstname,
+          lastname: result.lastname,
+          Gender: result.Gender,
+          
+        }
         console.log(user)
-        const token = jwt.sign(user, key, { expiresIn: 86400 });
+        const token = jwt.sign(user_1, key, { expiresIn: 86400 });
         res.status(200).json({user, token, status });
       } else {
         res.status(200).json({ status });
