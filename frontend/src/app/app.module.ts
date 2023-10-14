@@ -13,8 +13,10 @@ import { StatustableComponent } from './pages/admin/statustable/statustable.comp
 import { NavbarComponent } from './navbar/navbar.component';
 import { SingupComponent } from './pages/admin/singup/singup.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
-import { AdminCheckbillComponent } from './pages/admin/admincheckbill/admincheckbill.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminCheckbillComponent } from './pages/admin/admincheckbill/admincheckbill.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,9 +30,20 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     SingupComponent,
     ProfileComponent,
-    AdminCheckbillComponent,
+AdminCheckbillComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
+  ],
+
   providers: [],
   bootstrap: [AppComponent],
 })
