@@ -108,7 +108,11 @@ export class SingupComponent {
     this.http.post("http://localhost:3000/signup", formData, { headers })
       .subscribe((data: any) => {
         console.log(data);
-        // Handle the response accordingly, for example, navigate to a success page
+        Swal.fire(
+          'Singup success!',
+          'You clicked the button!',
+          'success'
+        )
       }, (error: any) => {
         console.error(error);
         // Handle errors, for example, display an error message
