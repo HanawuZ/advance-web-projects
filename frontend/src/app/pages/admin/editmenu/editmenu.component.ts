@@ -27,9 +27,13 @@ export class EditmenuComponent implements OnInit {
 
   updateFood(id: any) {
     // Use the value of the FormGroup
-    const data = this.updateFoodForm.value;
+    const data = {
+      name: this.updateFoodForm.get('name')!.value || this.foods.name,
+      price: this.updateFoodForm.get('price')!.value || this.foods.price,
+      picture: this.updateFoodForm.get('picture')!.value || this.foods.picture,
+    };
     const token = localStorage.getItem('token');
-    fetch(this.api + '/'+ id, {
+    fetch(this.api + '/' + id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
