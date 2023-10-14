@@ -1,6 +1,6 @@
-const {Admin,Gender} = require("../models/admin")
+const { Admin, Gender } = require("../models/admin")
 
-const  {makeHash} = require('../middlewares/index')
+const { makeHash } = require('../middlewares/index')
 
 async function insertAdmin(req, res, next) {
     const Pass = await makeHash('123456')
@@ -16,10 +16,10 @@ async function insertAdmin(req, res, next) {
         console.log(result)
         res.status(201).json({ message: "Complete add data" })
     })
-    .catch((err) => {
-        console.log(err)
-        res.status(501).json({ message: "Cannot add data" })
-    })
+        .catch((err) => {
+            console.log(err)
+            res.status(501).json({ message: "Cannot add data" })
+        })
 }
 
 async function updateAdmin(req, res, next) {
@@ -92,4 +92,14 @@ async function insertGender(req, res, next) {
     }
 }
 
-module.exports = { insertAdmin, updateAdmin, deleteAdmin, getAdminByID,insertGender}
+async function getGender(req, res, next){
+    Gender.find({})
+    .then((result) =>{
+        res.status(200).json(result)
+    })
+    .catch((err) =>{
+        console.log(err);
+    })
+}
+
+module.exports = { insertAdmin, updateAdmin, deleteAdmin, getAdminByID, insertGender ,getGender}

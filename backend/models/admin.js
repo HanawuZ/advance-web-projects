@@ -9,7 +9,7 @@ const admin = new Schema({
     firstname: String,
     lastname: String,
     password: String,
-    Gender: gender,
+    Gender: String,
     profile_picture: String
 });
 
