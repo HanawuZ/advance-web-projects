@@ -45,9 +45,9 @@ router.route('/signin')
         const playload = {
           user_name: req.body.user_name,
           password: req.body.password,
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
-          gender: req.body.gender,
+          // firstname: req.body.firstname,
+          // lastname: req.body.lastname,
+          // gender: req.body.gender,
         };
         console.log(playload);
         try {
