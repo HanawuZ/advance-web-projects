@@ -4,8 +4,8 @@ const { listOrder, insertOrder,  getOrder} = require('../controllers/order.contr
 
 // const {insertFood,updateFood,deleteFood, getFoodByID, listFood} = require('../controllers/foods.controller')
 
-router.get('/order/:id', getOrder)
+router.get('/order/:id', getOrder)      // * Used
 router.get('/order', listOrder)
-router.post('/order',insertOrder)
+router.post('/order',insertOrder)       // * Used
 
 module.exports = router

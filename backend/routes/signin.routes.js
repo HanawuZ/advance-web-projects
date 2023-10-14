@@ -35,7 +35,7 @@ const findUser = (user_name) => {
 };
 
 
-
+// * Used
 router.route('/signin')
     .post(async (req, res) => {
         const playload = {
@@ -57,7 +57,8 @@ router.route('/signin')
           password: playload.password,
           firstname: result.firstname,
           lastname: result.lastname,
-          Gender: result.Gender
+          Gender: result.Gender,
+          profile_picture: result.profile_picture,
         }
         const token = jwt.sign(user, key, { expiresIn: 86400 });
         res.status(200).json({user, token, status });

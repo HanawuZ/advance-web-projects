@@ -79,6 +79,8 @@ const upload_card = multer({
 //const upload = multer({ storage: storage });
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
+
+// * Used
 router.post('/signup', upload_card.single('profile_picture'), async (req, res) => {
   try {
     const hashText = await makeHash(req.body.password);
