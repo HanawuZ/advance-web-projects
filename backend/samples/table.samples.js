@@ -17,16 +17,15 @@ async function dumpStatus() {
 
 async function dumpTables(){
     const status_empty = await Status.findOne({status_name:"empty"})
+    console.log(status_empty)
     const status_busy = await Status.findOne({status_name:"busy"})
 
     const table1 = new Tables({
-        order: null,
-        tables_id:1,
+        tables_id:"1",
         status:status_empty
     })
     const table2 = new Tables({
-        order: null,
-        tables_id:2,
+        tables_id:"2",
         status:status_empty
     })
     const tables = [table1, table2]

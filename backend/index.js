@@ -16,11 +16,11 @@ const { dumpTables, dumpStatus }= require('./samples/table.samples')
 async function dumpData(){
 
     // If you want to dump which data, just uncomment it.
-    // await dumpFoods()
+    await dumpFoods()
     // await dumpOrderedFoods()
-    // await dumpAdmins()
-    // await dumpStatus()
-    // await dumpTables()
+    await dumpAdmins()
+    await dumpStatus()
+    await dumpTables()
 }
 
 app.use((req, res, next) => {
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 connectToDatabase()
- dumpData()
+//  dumpData()
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
