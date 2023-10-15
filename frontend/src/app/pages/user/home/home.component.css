@@ -302,3 +302,17 @@ section {
     font-weight: 700;
     color: #ce1212;
 }
+
+.menu-img-container {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.menu-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

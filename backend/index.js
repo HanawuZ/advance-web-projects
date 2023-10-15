@@ -15,6 +15,7 @@ const { dumpAdmins }= require('./samples/admin.samples')
 const { dumpOrderedFoods }= require('./samples/ordered_food.samples')
 const { dumpTables, dumpStatus }= require('./samples/table.samples')
 const { dumpGenders } = require('./samples/gender.samples')
+app.use(express.json({ limit: "10mb" }));
 async function dumpData(){
 
     // If you want to dump which data, just uncomment it.
