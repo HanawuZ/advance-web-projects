@@ -48,8 +48,10 @@ router.route('/signin')
 
     try {
       const result = await findUser(playload.user_name);
+      console.log("REsult is",result)
       const loginStatus = await compareHash(playload.password, result.password);
       const status = loginStatus.status;
+      console.log(status)
       
       if (status) {
         console.log("Result USER", result)
@@ -71,11 +73,11 @@ router.route('/signin')
           Gender: result.Gender,
           
         }
-        console.log(user)
         const token = jwt.sign(user_1, key, { expiresIn: 86400 });
+        console.log("Token is", token)
         res.status(200).json({user, token, status });
       } else {
-        res.status(200).json({ status });
+        res.status(404).json({ status });
       }
     } catch (error) {
       console.log(error)

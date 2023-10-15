@@ -21,7 +21,7 @@ async function dumpData(){
     await dumpFoods()
     // await dumpOrderedFoods()
     await dumpGenders()
-    await dumpAdmins()
+    // await dumpAdmins()
     await dumpStatus()
     await dumpTables()
 }

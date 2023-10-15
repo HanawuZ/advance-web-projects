@@ -24,19 +24,23 @@ async function insertAdmin(req, res, next) {
 
 async function updateAdmin(req, res, next) {
 
-    const id = req.params.id;
+    const decodedData = req.decoded;
 
-    const admin = await Admin.findOne({ _id: id })
+    const admin = await Admin.findOne({ _id: decodedData._id })
     let password
     
     // Check if request password is not equal to password in database   
     // admin.password is hash password in database
     // Should decode first
-    const isPasswordCorrect = await bcrypt.compare(req.body.password, admin.password)
-    if (!isPasswordCorrect) {
-        password = await makeHash(req.body.password)
-    } else {
+    if (!req.body.password) {
         password = admin.password
+    } else {
+        const isPasswordCorrect = await bcrypt.compare(req.body.password, admin.password)
+        if (!isPasswordCorrect) {
+            password = await makeHash(req.body.password)
+        } else {
+            password = admin.password
+        }
     }
     
     const updatedAdminData = {
@@ -48,7 +52,7 @@ async function updateAdmin(req, res, next) {
         profile_picture: req.body.profile_picture
     };
 
-    Admin.findOneAndUpdate({ _id: id }, updatedAdminData, { new: true })
+    Admin.findOneAndUpdate({ _id: decodedData._id }, updatedAdminData, { new: true })
         .then((result) => {
             if (!result) {
                 return res.status(404).json({ message: 'Admin not found' });
@@ -78,13 +82,24 @@ async function deleteAdmin(req, res, next) {
 }
 
 async function getAdminByID(req, res, next) {
-    const id = req.params.id
-    Admin.findOne({ admin_id: id })
+    const decodedData = req.decoded;
+    const id = decodedData._id
+    // const id = req.params.id
+    Admin.findOne({ _id: id })
         .then((result) => {
-            res.status(200).json(result)
+            const user_data = {
+                user_name: result.user_name,
+                firstname: result.firstname,
+                lastname: result.lastname,
+                profile_picture: result.profile_picture,
+                Gender: result.Gender
+            }
+            console.log("user_data is ",user_data)
+            res.status(200).json(user_data)
         })
         .catch((err) => {
-            res.status(500).json({ message: "Cannot get data" })
+            console.error(err)
+            res.status(500).json({ message: "Cannot get admin data" })
         })
 }
 
