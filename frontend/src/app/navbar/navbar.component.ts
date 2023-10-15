@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DataService } from 'src/app/service/data.service';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements  OnInit{
 
   isAdmin: boolean;
   tableId?: string;
@@ -27,7 +28,8 @@ export class NavbarComponent {
   orderedItemCount: number = 0;
 
   getOrderedFood() {
-    fetch('http://localhost:3000/ordered_food')
+    const table_id = localStorage.getItem('tableId');
+    fetch(`http://localhost:3000/ordered_food/${table_id}`)
       .then((response) => response.json())
       .then((data) => {
         this.orderedFood = data;

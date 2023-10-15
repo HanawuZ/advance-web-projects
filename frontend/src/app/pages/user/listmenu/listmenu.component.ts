@@ -49,7 +49,7 @@ export class ListmenuComponent implements OnInit {
   }
 
   getOrderedFood() {
-    this.orderService.getOrderedFood().subscribe(
+    this.orderService.getOrderedFood(this.tableId!).subscribe(
       (data: any) => {
         this.orderedFood = data;
         console.log('Received ordered food data:', this.orderedFood);

@@ -46,13 +46,13 @@ async function updateOrderedFood(req, res, next) {
 }
 
 async function insertOrderedFood(req, res, next) {
-    
     const food = await Food.findOne({ _id: req.params.id })
 
     const Data = new Ordered_food({
         food: food,
         amount: 1,
         discription: "",
+        table_id: req.body.table_id
     })
 
     Data.save().then((result) => {
@@ -81,9 +81,10 @@ async function deleteOrderedFood(req, res, next) {
 }
 
 async function getOrderedFood(req, res, next) {
-    const _id = req.params._id
-    Ordered_food.findOne({ _id: _id })
+    const id = req.params.id
+    Ordered_food.find({ table_id: id })
         .then((result) => {
+            console.log("Result of ordered food by table id is", result)
             res.status(200).json(result)
         })
         .catch((err) => {
@@ -92,4 +93,15 @@ async function getOrderedFood(req, res, next) {
 
 }
 
+async function getOrderedFoodByTable(req, res, next) {
+    Ordered_food.find({ table_id: req.params.table_id})
+        .then((result) => {
+            console.log(result)
+            res.status(200).json(result)
+        })
+        .catch((err) => {
+            console.log(err)
+            res.status(500).json({ message: "Cannot get data" })
+        })
+}
 module.exports = {list_ordered_food, insertOrderedFood, deleteOrderedFood, getOrderedFood, updateOrderedFood }

@@ -9,7 +9,7 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class TableComponent implements OnInit {
 
-  constructor(private router: Router , private DataService: DataService) {}
+  constructor(private router: Router, private DataService: DataService) { }
 
   table: any[] = [];
   getTable() {
@@ -23,13 +23,17 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.getTable();
+    this.getTable();
   }
 
-  onclick2nav(tables_id: string){
+  onclick2nav(tables_id: string) {
     //console.log(tables_id);
     this.DataService.sendTableId(tables_id);
     this.router.navigate(['/home']);
+    // Wait for a short delay and then reload the page
+    setTimeout(() => {
+      location.reload();
+    }, 10);
     //this.clickTable
   }
 

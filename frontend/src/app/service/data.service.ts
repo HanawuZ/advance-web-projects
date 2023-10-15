@@ -17,8 +17,8 @@ export class DataService {
     return this.http.post(`${this.apiUrl}/order`, orderData);
   }
 
-  getOrderedFood() {
-    return this.http.get(`${this.apiUrl}/ordered_food`);
+  getOrderedFood(tableId : string) {
+    return this.http.get(`${this.apiUrl}/ordered_food/${tableId}`);
   }
 
   updateOrderedFood(id: any, flag: any) {
