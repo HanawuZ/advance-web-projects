@@ -46,7 +46,7 @@ export class LoginComponent {
         console.log(localStorage.getItem('token'));
 
         Swal.fire('Login success!', 'welcome!!', 'success').then(() => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/menu']);
           setTimeout(() => {
             location.reload();
           }, 50);
