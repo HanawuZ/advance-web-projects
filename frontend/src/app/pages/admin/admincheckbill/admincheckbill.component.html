@@ -45,11 +45,11 @@
                     <div class="col">{{ item.food.price | currency:'USD':'symbol':'1.2-2' }}</div>
                 </div>
             </div>
-            <!-- <div class="d-flex justify-content-end pt-5 pb-5">
-                <button class="btn btn_checkbill">
+            <div class="d-flex justify-content-end pt-5 pb-5">
+                <button class="btn btn_checkbill" (click)="insertPayment(order.table_id)">
                     <h6>ชำระเงิน</h6>
                 </button>
-            </div> -->
+            </div>
         </div>
     </div>
 </div>

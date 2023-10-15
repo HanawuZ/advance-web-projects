@@ -1,5 +1,6 @@
 const Payment = require("../models/payments")
-const Order = require("../models/orders")
+const { Tables, Status } = require('../models/tables')
+const Orders = require('../models/orders')
 
 async function listPayment(req, res, next) {
     Payment.find({})
@@ -13,18 +14,35 @@ async function listPayment(req, res, next) {
 
 async function insertPayment(req, res, next) {
 
-    const sampleOrder = await Order.findOne({ _id: "65264e1af8ec0761b8e8cac7" })
-    console.log(sampleOrder)
-    const samplePayment= new Payment({
-        order: sampleOrder,
-    })
 
-    samplePayment.save().then((result) => {
-        console.log(result)
-        res.status(201).json({ message: "Complete add data" })
-    }).catch((err) => {
-        res.status(501).json({ message: "Cannot add data" })
-    })
+
+    const status = await Status.findOne({ status_name: "empty" })
+
+    const updateTableData = {
+        status: status,
+        tables_id: req.params.id,
+    }
+
+    console.log("AAAAAAAAAAAA", updateTableData)
+    Tables.findOneAndUpdate({ tables_id: req.params.id }, updateTableData, { new: true }/*updateTableData, { new: true }*/)
+        .then((result) => {
+            if (!result) {
+                return res.status(404).json({ message: 'Table not found' });
+            }
+            const samplePayment = new Payment({
+                tables_id: req.params.id,
+            })
+            samplePayment.save().then(async (result) => {
+                await Orders.findOneAndDelete({ table_id: req.params.id })
+                res.status(201).json({ message: "Complete add data" })
+            }).catch((err) => {
+                res.status(501).json({ message: "Cannot add data" })
+            })
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).json({ message: 'Internal server error' });
+        });
 }
 
 async function getPaymentByID(req, res, next) {
@@ -38,4 +56,4 @@ async function getPaymentByID(req, res, next) {
         })
 }
 
-module.exports = { listPayment,insertPayment, getPaymentByID }
+module.exports = { listPayment, insertPayment, getPaymentByID }
