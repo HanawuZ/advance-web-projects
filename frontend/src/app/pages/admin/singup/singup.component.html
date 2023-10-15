@@ -20,7 +20,7 @@
                         Username is required
                       </div>
                       <div *ngIf="adminForm.get('user_name')?.errors?.['pattern']">
-                        Username is cannot insert A-Z
+                        Only a-z can be used.
                       </div>
                     </div>
                   </div>
@@ -36,12 +36,12 @@
                       <input class="form-check-input" type="radio" [value]="item.gender" formControlName="Gender" />
                       <label class="form-check-label">{{ item.gender }}</label>
                       <div
-                      *ngIf="adminForm.get('Gender')?.invalid && (adminForm.get('Gender')?.dirty || adminForm.get('Gender')?.touched)"
-                      class="alert alert-danger">
-                      <div *ngIf="adminForm.get('Gender')?.errors?.['required']">
-                        Username is required
+                        *ngIf="adminForm.get('Gender')?.invalid && (adminForm.get('Gender')?.dirty || adminForm.get('Gender')?.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="adminForm.get('Gender')?.errors?.['required']">
+                          gender is required
+                        </div>
                       </div>
-                    </div>
                     </div>
                   </div>
                 </div>
@@ -61,7 +61,7 @@
                         First Name is required
                       </div>
                       <div *ngIf="adminForm.get('firstname')?.errors?.['pattern']">
-                        Username is cannot insert A-Z
+                        First Name must begin with an uppercase letter and cannot use special characters.
                       </div>
                     </div>
                   </div>
@@ -79,7 +79,7 @@
                         lastname Name is required
                       </div>
                       <div *ngIf="adminForm.get('lastname')?.errors?.['pattern']">
-                        lastname is cannot insert A-Z
+                        lastname must begin with an uppercase letter and cannot use special characters.
                       </div>
                     </div>
                   </div>
@@ -101,7 +101,7 @@
                         password is required
                       </div>
                       <div *ngIf="adminForm.get('password')?.errors?.['pattern']">
-                        password is cannot insert A-Z
+                        Password must be longer than 8 characters.
                       </div>
                     </div>
                   </div>
@@ -115,7 +115,8 @@
                   <div class="form-outline datepicker w-100">
                     <div class="form-group">
                       <label for="foodImage"><b>อัปโหลดรูปภาพ</b></label>
-                    <input type="file" class="form-control-file"     [(ngModel)]="profile_picture" (change)="onChangeImg($event)">
+                      <input type="file" class="form-control-file" [(ngModel)]="profile_picture"
+                        (change)="onChangeImg($event)">
                       <!-- <input type="file" class="form-control-file" id=""
                         style="background-color: rgb(255, 255, 255); border-radius: 5px;"> -->
                       <label for="" class="form-label">Upload profile</label>

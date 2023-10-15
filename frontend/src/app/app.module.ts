@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminCheckbillComponent } from './pages/admin/admincheckbill/admincheckbill.component';
 import { EditmenuComponent } from './pages/admin/editmenu/editmenu.component';
+import { TableComponent } from './pages/user/table/table.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { EditmenuComponent } from './pages/admin/editmenu/editmenu.component';
     ProfileComponent,
 AdminCheckbillComponent,
 EditmenuComponent,
+TableComponent,
   ],
   imports: [
     BrowserModule,
