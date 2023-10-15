@@ -38,7 +38,7 @@ async function insertstatus(req, res, next) {
 
 async function updateTable(req, res, next) {
     const id = req.params.id;
-    const table_status = req.body.table_status;
+    const table_status = req.body.status;
 
     const status = await Status.findOne({ status_name: table_status })
 
