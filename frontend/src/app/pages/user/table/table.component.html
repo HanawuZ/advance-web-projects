@@ -1,7 +1,7 @@
 <div class="container mt-5 pt-5">
     <div class="row align-items-center">
         <div class="col-3 mb-5" *ngFor="let item of table">
-            <button class="btn btn-secondary" style="width: 100%; height: 200px;">โต๊ะที่ {{item.tables_id}}</button>
+            <button  class="btn btn-secondary" style="width: 100%; height: 200px;" (click)="onclick2nav(item.tables_id)">โต๊ะที่ {{item.tables_id}}</button>
         </div>
     </div>
 </div>

@@ -7,7 +7,7 @@ const status = new Schema({
 const Status = mongoose.model('status', status);
 
 const tables = new Schema({
-    tables_id: Number,
+    tables_id: String,
     status: {type: Status.schema },
 })
 const Tables = mongoose.model('tables', tables);
