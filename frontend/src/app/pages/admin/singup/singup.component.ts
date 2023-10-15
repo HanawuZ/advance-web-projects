@@ -26,7 +26,7 @@ export class SingupComponent {
   profile_picture:string = "";
 
   adminForm = new FormGroup({
-    user_name: new FormControl('', [Validators.required, Validators.pattern('B[0-9]{7}')]),
+    user_name: new FormControl('', [Validators.required, Validators.pattern('[a-z]*')]),
     firstname: new FormControl('', [Validators.required, Validators.pattern('[A-Z][a-z]*')]),
     lastname: new FormControl('', [Validators.required, Validators.pattern('[A-Z][a-z]*')]),
     password: new FormControl('', [Validators.required, Validators.pattern('^.{8,}')]),
@@ -50,44 +50,47 @@ export class SingupComponent {
     //   formData.append("profile_picture", profilePicture, profilePicture.name);
     // }
 
-    // if (this.adminForm === null) {
-    //   return;
-    // }
+    if (this.adminForm === null) {
+      return;
+    }
 
-    // if (this.adminForm.invalid) {
-    //   let errorMessage = 'กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้องดังนี้:';
+    if (this.adminForm.invalid) {
+      let errorMessage = 'กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้องดังนี้:';
 
-    //   if (this.adminForm.get('user_name')?.hasError('required')) {
-    //     errorMessage += '\n- กรอกชื่อผู้ใช้';
-    //   }
-    //   if (this.adminForm.get('user_name')?.hasError('pattern')) {
-    //     errorMessage += '\n- รูปแบบชื่อผู้ใช้ไม่ถูกต้อง';
-    //   }
-    //   if (this.adminForm.get('firstname')?.hasError('required')) {
-    //     errorMessage += '\n- กรอกชื่อ';
-    //   }
-    //   if (this.adminForm.get('firstname')?.hasError('pattern')) {
-    //     errorMessage += '\n- รูปแบบชื่อไม่ถูกต้อง';
-    //   }
-    //   if (this.adminForm.get('lastname')?.hasError('required')) {
-    //     errorMessage += '\n- กรอกนามสกุล';
-    //   }
-    //   if (this.adminForm.get('lastname')?.hasError('pattern')) {
-    //     errorMessage += '\n- รูปแบบนามสกุลไม่ถูกต้อง';
-    //   }
-    //   if (this.adminForm.get('password')?.hasError('required')) {
-    //     errorMessage += '\n- กรอกรหัสผ่าน';
-    //   }
-    //   if (this.adminForm.get('password')?.hasError('pattern')) {
-    //     errorMessage += '\n- รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร';
-    //   }
-    //   if (this.adminForm.get('Gender')?.hasError('required')) {
-    //     errorMessage += '\n- เลือกเพศ';
-    //   }
+      if (this.adminForm.get('user_name')?.hasError('required')) {
+        errorMessage += '\n- กรอกชื่อผู้ใช้';
+      }
+      if (this.adminForm.get('user_name')?.hasError('pattern')) {
+        errorMessage += '\n- รูปแบบชื่อผู้ใช้ไม่ถูกต้อง';
+      }
+      if (this.adminForm.get('firstname')?.hasError('required')) {
+        errorMessage += '\n- กรอกชื่อ';
+      }
+      if (this.adminForm.get('firstname')?.hasError('pattern')) {
+        errorMessage += '\n- รูปแบบชื่อไม่ถูกต้อง';
+      }
+      if (this.adminForm.get('lastname')?.hasError('required')) {
+        errorMessage += '\n- กรอกนามสกุล';
+      }
+      if (this.adminForm.get('lastname')?.hasError('pattern')) {
+        errorMessage += '\n- รูปแบบนามสกุลไม่ถูกต้อง';
+      }
+      if (this.adminForm.get('password')?.hasError('required')) {
+        errorMessage += '\n- กรอกรหัสผ่าน';
+      }
+      if (this.adminForm.get('password')?.hasError('pattern')) {
+        errorMessage += '\n- รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร';
+      }
+      if (this.adminForm.get('Gender')?.hasError('required')) {
+        errorMessage += '\n- เลือกเพศ';
+      }
+      if (this.adminForm.get('profile_picture')?.hasError('required')) {
+        errorMessage += '\n- เลือกรูปภาพโปรไฟล์';
+      }
 
-    //   Swal.fire('ข้อมูลไม่ถูกต้อง', errorMessage, 'error');
-    //   return;
-    // }
+      Swal.fire('ข้อมูลไม่ถูกต้อง', errorMessage, 'error');
+      return;
+    }
 
     const data = {
      user_name : this.adminForm.get('user_name')?.value,
