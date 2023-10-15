@@ -27,8 +27,11 @@
 
                     <div class="row gy-5">
                         <div *ngFor="let item of foods; index as i;" class="col-lg-4 menu-item mb-5">
-                            <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img
-                                   [src]="foods[i].picture" class="menu-img img-fluid" alt=""></a>
+                            <a href="assets/img/menu/menu-item-1.png" class="glightbox">
+                                <div class="menu-img-container">
+                                    <img [src]="foods[i].picture" class="menu-img img-fluid" alt="">
+                                </div>
+                            </a>
                             <h4>{{foods[i].name}}</h4>
                             <p class="ingredients">
                                 Lorem, deren, trataro, filede, nerada
@@ -42,8 +45,6 @@
                                 </div>
                             </button>
                         </div>
-
-
                     </div>
                 </div><!-- End Starter Menu Content -->
             </div>
