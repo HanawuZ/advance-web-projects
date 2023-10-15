@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent },
   { path: 'addmenu', component: AddmenuComponent },
   { path: 'statustable', component: StatustableComponent },
-  { path: 'admincheckbill', component: AdminCheckbillComponent },
+  { path: 'admincheckbill/:id', component: AdminCheckbillComponent },
   { path: 'singup', component: SingupComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'editmenu/:id', component: EditmenuComponent },

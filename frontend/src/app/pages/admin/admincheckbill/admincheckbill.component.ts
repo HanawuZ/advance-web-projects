@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admincheckbill',
@@ -8,10 +9,10 @@ import { OnInit } from '@angular/core';
 })
 export class AdminCheckbillComponent implements OnInit {
   order: any = {};
-  constructor() {}
+  constructor(private route : ActivatedRoute) {}
 
-  getOrdered() {
-    fetch('http://localhost:3000/order/1')
+  getOrdered(table_id: string) {
+    fetch(`http://localhost:3000/order/${table_id}`)
       .then((response) => response.json())
       .then((data) => {
         this.order = data; // Update the orderData object with the response data
@@ -21,6 +22,8 @@ export class AdminCheckbillComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getOrdered();
+    this.route.params.subscribe((params) => {
+      this.getOrdered(params['id']);
+    });
   }
 }
