@@ -37,4 +37,15 @@ export class TableComponent implements OnInit {
     //this.clickTable
   }
 
+  selectTable(table_id: string) {
+    fetch(`http://localhost:3000/table/${table_id}`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({ status: 'busy' })
+    }).then((response) => {
+      response.json()
+    }).then((data) => {
+      this.onclick2nav(table_id)
+    })
+  }
 }
