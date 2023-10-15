@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menu',
@@ -36,7 +37,14 @@ export class MenuComponent {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        this.getFood();
+        Swal.fire(
+          'Delete menu success!',
+          'menu has been deleted.!',
+          'success'
+        ).then(() => {
+          this.getFood();
+        });
+
       })
       .catch((error) => console.error(error));
   }

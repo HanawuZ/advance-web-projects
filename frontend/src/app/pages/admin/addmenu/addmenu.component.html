@@ -8,30 +8,51 @@
         <div class="row mt-5">
             <div class="col-7 me-3"
                 style="background-color: #FFC7EA; border-radius: 30px; padding: 30px; text-align: start;">
-                <h3><i class="fa-solid fa-utensils fa-lg" style="margin-right: 2%;"></i><b>เพิ่มเมนูอาหาร</b></h3>
+                <h3><i class="fa-solid fa-utensils fa-lg" style="margin-right: 2%;"></i><b>insert food</b></h3>
 
                 <div class="form-group">
-                    <label for="foodName"><b>ชื่อเมนู</b></label>
+                    <label for="foodName"><b>menu name</b></label>
                     <input type="text" class="form-control w-50" id="foodName" placeholder="ชื่ออาหาร"
                         formControlName="name">
+                        <div
+                        *ngIf="insertFoodForm.get('name')?.invalid && (insertFoodForm.get('name')?.dirty || insertFoodForm.get('name')?.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="insertFoodForm.get('name')?.errors?.['required']">
+                          Menu name is required
+                        </div>
+                      </div>
                 </div>
                 <div class="form-group">
-                    <label for="foodPrice"><b>ราคา</b></label>
+                    <label for="foodPrice"><b>price</b></label>
                     <input type="number" class="form-control w-50" id="foodPrice" placeholder="ราคา"
                         formControlName="price">
+                        <div
+                        *ngIf="insertFoodForm.get('price')?.invalid && (insertFoodForm.get('price')?.dirty || insertFoodForm.get('price')?.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="insertFoodForm.get('price')?.errors?.['required']">
+                          price is required
+                        </div>
+                      </div>
                 </div>
                 <div class="form-group">
-                    <label for="foodImage"><b>อัปโหลดรูปภาพ</b></label>
+                    <label for="foodImage"><b>upload picture</b></label>
                     <input type="file" class="form-control-file" [(ngModel)]="picture" (change)="onChangeImg($event)">
+                    <div
+                        *ngIf="insertFoodForm.get('picture')?.invalid && (insertFoodForm.get('picture')?.dirty || insertFoodForm.get('picture')?.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="insertFoodForm.get('picture')?.errors?.['required']">
+                          picture is required
+                        </div>
+                      </div>
                 </div>
 
                 <div class="d-flex" style="text-align: end; margin-top: 7%;">
                     <a routerLink="/menu" type="button" class="btn buttonback">
-                        <b>ย้อนกลับ</b>
+                        <b>back</b>
                     </a>
-                    <a routerLink="/menu" type="button" class="btn buttonaddmenu" (click)="insertFood()">
+                    <a  type="button" class="btn buttonaddmenu" (click)="insertFood()">
                         <i class="fa-solid fa-circle-plus fa-lg"
-                            style="color: #ffffff; margin-right: 5px;"></i><b>เพิ่มเมนู</b>
+                            style="color: #ffffff; margin-right: 5px;"></i><b>insert menu</b>
                     </a>
                 </div>
 
@@ -40,7 +61,7 @@
 
             <div class="col-4 image_addmenu">
                 <h3 style="margin-bottom: 10%;"><b>
-                        <i class="fa-regular fa-image" style="margin-right: 2%; text-align: start;"></i>รูปภาพ</b></h3>
+                        <i class="fa-regular fa-image" style="margin-right: 2%; text-align: start;"></i>picture</b></h3>
                 <img *ngIf="previewLoaded" class="img-thumbnail" [src]="this.insertFoodForm.value.picture"
                     style="border-radius: 20px;" width="90%">
             </div>

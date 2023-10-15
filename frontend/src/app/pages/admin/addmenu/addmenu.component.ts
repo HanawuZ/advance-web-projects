@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'; // Import necessary modules
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-addmenu',
@@ -11,6 +14,8 @@ export class AddmenuComponent {
   name: string = '';
   picture: string = '';
   price: Number = 0;
+
+  constructor(private router: Router) {}
 
   // Create a FormGroup with form controls
   insertFoodForm = new FormGroup({
@@ -27,6 +32,23 @@ export class AddmenuComponent {
     const data = this.insertFoodForm.value;
     const token = localStorage.getItem('token');
     // Make an HTTP POST request
+    if (this.insertFoodForm === null) {
+      return;
+    }
+    if (this.insertFoodForm.invalid) {
+      let errorMessage = 'Please fill in the information completely and correctly as follows:';
+
+      if (this.insertFoodForm.get('name')?.hasError('required')) {
+        errorMessage += '\n- input the menu name.';
+      }
+      if (this.insertFoodForm.get('picture')?.hasError('pattern')) {
+        errorMessage += '\n- Add food pictures';
+      }
+      if (this.insertFoodForm.get('price')?.hasError('required')) {
+        errorMessage += '\n- input the price';
+      }Swal.fire('ข้อมูลไม่ถูกต้อง', errorMessage, 'error');
+      return;
+    }
     fetch(this.api, {
       method: 'POST',
       headers: {
@@ -38,8 +60,24 @@ export class AddmenuComponent {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        Swal.fire(
+          'insert new menu success!',
+          'new menu has been added.!',
+          'success'
+        ).then(() => {
+          setTimeout(() => {
+            this.router.navigate(['/menu']);
+          }, 1000); // รอ 2 วินาทีแล้วค่อยไปหน้า "login"
+        });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        Swal.fire(
+          'Error',
+          'An error occurred while processing your request.',
+          'error'
+        );
+      });
   }
 
   onChangeImg(event: any) {
