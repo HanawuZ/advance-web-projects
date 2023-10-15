@@ -99,7 +99,7 @@ export class ProfileComponent {
         // localStorage.setItem('data', json);
         console.log(data);
         Swal.fire('Edit success!', 'success').then(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/menu']);
           setTimeout(() => {
             location.reload();
           }, 10);

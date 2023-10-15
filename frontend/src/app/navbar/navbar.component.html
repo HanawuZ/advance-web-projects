@@ -8,7 +8,7 @@
         <nav id="navbar" class="navbar" [ngClass]="{'user-navbar': !isAdmin, 'admin-navbar': isAdmin}">
             <ul>
               <li><a routerLinkActive="active" class="nav-link scrollto active">{{tableId}}</a></li>
-                <li><a a routerLink="/home" routerLinkActive="active" class="nav-link scrollto active">Home</a></li>
+                <li *ngIf="!isAdmin"><a *ngIf="!isAdmin" routerLink="/home" routerLinkActive="active" class="nav-link scrollto active">Home</a></li>
                 <li *ngIf="!isAdmin" >
                     <a  (click)="navigateToListMenu()" style="text-decoration: none;">
                         Cart<i class="fa-solid fa-cart-shopping fa-2xl me-3" style="font-size: 25px;" aria-hidden="true"></i>
