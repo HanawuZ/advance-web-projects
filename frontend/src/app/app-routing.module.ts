@@ -11,6 +11,7 @@ import { AdminCheckbillComponent } from './pages/admin/admincheckbill/admincheck
 import { SingupComponent } from './pages/admin/singup/singup.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { EditmenuComponent } from './pages/admin/editmenu/editmenu.component';
+import { TableComponent } from './pages/user/table/table.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'listmenu/:id', component: ListmenuComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'singup', component: SingupComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'editmenu/:id', component: EditmenuComponent },
+  { path: 'table', component: TableComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
