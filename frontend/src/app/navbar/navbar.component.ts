@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,12 +9,19 @@ import Swal from 'sweetalert2';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  isAdmin: boolean;
-  tableId: string = '1';
 
-  constructor(private router: Router) {
+  isAdmin: boolean;
+  tableId?: string;
+
+  constructor(private router: Router,private DataService: DataService) {
     const token = localStorage.getItem('token');
     this.isAdmin = token !== null;
+    this.DataService.tableId$.subscribe((tableId) => {
+      this.tableId = tableId;
+      localStorage.setItem("tableId",this.tableId);
+      console.log(this.tableId);
+    });
+    this.tableId = localStorage.getItem("tableId")||'';
   }
   orderedFood: any[] = [];
   orderedItemCount: number = 0;
@@ -32,7 +40,7 @@ export class NavbarComponent {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('data');
-   
+
     Swal.fire('Logout success!', 'welcome!!', 'success').then(() => {
       this.router.navigate(['/home']);
       setTimeout(() => {
@@ -47,7 +55,7 @@ export class NavbarComponent {
 
   navigateToListMenu() {
     console.log("tableId", this.tableId)
-    this.router.navigate(['listmenu', this.tableId],);
-      
+    this.router.navigate(['listmenu', localStorage.getItem("tableId")],);
+
   }
 }

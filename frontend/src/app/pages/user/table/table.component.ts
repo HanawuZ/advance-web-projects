@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { OnInit } from '@angular/core';
+import { DataService } from 'src/app/service/data.service';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -8,7 +9,7 @@ import { OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router , private DataService: DataService) {}
 
   table: any[] = [];
   getTable() {
@@ -23,6 +24,13 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
       this.getTable();
+  }
+
+  onclick2nav(tables_id: string){
+    //console.log(tables_id);
+    this.DataService.sendTableId(tables_id);
+    this.router.navigate(['/home']);
+    //this.clickTable
   }
 
 }
