@@ -7,18 +7,18 @@ import { OnInit } from '@angular/core';
 })
 export class StatustableComponent implements OnInit {
   api = 'http://localhost:3000/';
-  order: any = {};
-  getOrdered() {
+  table: any = {};
+  getTable() {
     fetch(`http://localhost:3000/order`)
       .then((response) => response.json())
       .then((data) => {
-        this.order = data; // Update the orderData object with the response data
-        console.log(this.order);
+        this.table = data; // Update the orderData object with the response data
+        console.log(this.table);
       })
       .catch((error) => console.error(error));
   }
 
   ngOnInit(): void {
-    this.getOrdered();
+    this.getTable();
   }
 }
