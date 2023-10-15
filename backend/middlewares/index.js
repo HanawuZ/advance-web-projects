@@ -40,6 +40,7 @@ function authorization(req, res, next) {
           message: 'Unauthorized',
         });
       } else {
+        req.decoded = decode;
         console.log(decode)
         next();
       }

@@ -13,37 +13,23 @@
                 <div class="form-group">
                     <label for="foodName"><b>ชื่อเมนู</b></label>
                     <input type="text" class="form-control w-50" id="foodName" placeholder="ชื่ออาหาร"
-                    formControlName="name">
-                    <div
-                    *ngIf="insertFoodForm.get('name')?.invalid && (insertFoodForm.get('name')?.dirty || insertFoodForm.get('name')?.touched)"
-                    class="alert alert-danger">
-                    <div *ngIf="insertFoodForm.get('name')?.errors?.['required']">
-                      name is required
-                    </div>
-                  </div>
+                        formControlName="name">
                 </div>
                 <div class="form-group">
                     <label for="foodPrice"><b>ราคา</b></label>
                     <input type="number" class="form-control w-50" id="foodPrice" placeholder="ราคา"
-                    formControlName="price">
-                    <div
-                      *ngIf="insertFoodForm.get('price')?.invalid && (insertFoodForm.get('price')?.dirty || insertFoodForm.get('price')?.touched)"
-                      class="alert alert-danger">
-                      <div *ngIf="insertFoodForm.get('price')?.errors?.['required']">
-                        price is required
-                      </div>
-                    </div>
+                        formControlName="price">
                 </div>
                 <div class="form-group">
                     <label for="foodImage"><b>อัปโหลดรูปภาพ</b></label>
-                    <input type="file" class="form-control-file"     [(ngModel)]="picture" (change)="onChangeImg($event)">
+                    <input type="file" class="form-control-file" [(ngModel)]="picture" (change)="onChangeImg($event)">
                 </div>
 
                 <div class="d-flex" style="text-align: end; margin-top: 7%;">
                     <a routerLink="/menu" type="button" class="btn buttonback">
                         <b>ย้อนกลับ</b>
                     </a>
-                    <a  type="button" class="btn buttonaddmenu" (click)="insertFood()">
+                    <a routerLink="/menu" type="button" class="btn buttonaddmenu" (click)="insertFood()">
                         <i class="fa-solid fa-circle-plus fa-lg"
                             style="color: #ffffff; margin-right: 5px;"></i><b>เพิ่มเมนู</b>
                     </a>
@@ -54,9 +40,9 @@
 
             <div class="col-4 image_addmenu">
                 <h3 style="margin-bottom: 10%;"><b>
-                    <i class="fa-regular fa-image" style="margin-right: 2%; text-align: start;"></i>รูปภาพ</b></h3>
-                    <img *ngIf="previewLoaded" class="img-thumbnail" [src]="this.insertFoodForm.value.picture"
-                        style="border-radius: 20px;" width="90%">
+                        <i class="fa-regular fa-image" style="margin-right: 2%; text-align: start;"></i>รูปภาพ</b></h3>
+                <img *ngIf="previewLoaded" class="img-thumbnail" [src]="this.insertFoodForm.value.picture"
+                    style="border-radius: 20px;" width="90%">
             </div>
         </div>
     </form>

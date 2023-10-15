@@ -31,6 +31,7 @@ export class NavbarComponent {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('data');
    
     Swal.fire('Logout success!', 'welcome!!', 'success').then(() => {
       this.router.navigate(['/home']);

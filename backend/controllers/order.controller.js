@@ -120,6 +120,7 @@ async function insertOrder(req, res, next) {
 
 
 async function getOrder(req, res, next) {
+    
     const table_id = req.params.id
     Order.findOne({ table_id: table_id })
         .then((result) => {

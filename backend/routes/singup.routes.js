@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { updateAdmin} = require('../controllers/admin.controller')
+const { authorization } = require('../middlewares/index') 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
@@ -92,7 +93,6 @@ router.post('/signup', async (req, res) => {
       lastname: req.body.lastname,
       Gender: req.body.Gender,
       profile_picture: req.body.profile_picture
-      // Add other fields like profile_picture if needed
     };
 
     const newAdmin = new Admin(payload);
@@ -108,5 +108,5 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-router.put("/update", updateAdmin)
+router.put("/update", authorization, updateAdmin)  //* Used
 module.exports = router

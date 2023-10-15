@@ -13,34 +13,53 @@ import { Router } from '@angular/router';
 export class ProfileComponent {
   user: any;
   api: string = 'http://localhost:3000/';
+  adminForm!: FormGroup;
+
+  getAdmin(){
+    
+    let headers = new HttpHeaders(); // ใช้ HttpHeaders
+    headers = headers.set('authorization', localStorage.getItem('token') || '');
+    console.log(headers);
+
+    return this.http.get<any>('http://localhost:3000/admin',{headers}).pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  }
 
   constructor(private router: Router, private http: HttpClient) {
-    const json = localStorage.getItem('data');
-    console.log(JSON.parse(json!));
-    this.user = JSON.parse(json!);
-    console.log(this.user);
-  }
-  adminForm = new FormGroup({
-    user_name: new FormControl('', [
-      Validators.required,
-      Validators.pattern('B[0-9]{7}'),
-    ]),
-    firstname: new FormControl('', [
-      Validators.required,
-      Validators.pattern('[A-Z][a-z]*'),
-    ]),
-    lastname: new FormControl('', [
-      Validators.required,
-      Validators.pattern('[A-Z][a-z]*'),
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^.{8,}'),
-    ]),
-    Gender: new FormControl(null, Validators.required),
-    profile_picture: new FormControl('', [Validators.required]), // ให้แน่ใจว่า profile_picture ถูกเพิ่มตรงนี้
-  });
+    this.getAdmin().subscribe((data) => {
+      this.user = data
+      this.adminForm = new FormGroup({
+        user_name: new FormControl(this.user.user_name, [
+          Validators.required,
+          Validators.pattern('B[0-9]{7}'),
+        ]),
+        firstname: new FormControl(this.user.firstname, [
+          Validators.required,
+          Validators.pattern('[A-Z][a-z]*'),
+        ]),
+        lastname: new FormControl(this.user.lastname, [
+          Validators.required,
+          Validators.pattern('[A-Z][a-z]*'),
+        ]),
+        password: new FormControl(this.user.password, [
+          Validators.required,
+          Validators.pattern('^.{8,}'),
+        ]),
+        Gender: new FormControl(this.user.Gender, Validators.required),
+        profile_picture: new FormControl(this.user.profile_picture, [Validators.required]), // ให้แน่ใจว่า profile_picture ถูกเพิ่มตรงนี้
+      });
+    })
+    // const json = localStorage.getItem('data');
+    // console.log(JSON.parse(json!));
+    // this.user = JSON.parse(json!);
+    // console.log(this.user);
 
+    
+  }
+  
   data: any[] = [];
   getGender() {
     return this.http.get<any>('http://localhost:3000/gender').pipe(
@@ -50,29 +69,34 @@ export class ProfileComponent {
     );
   }
 
-  updateFood(id: any) {
+  updateAdmin(id: any) {
     // Use the value of the FormGroup
-    const data = {
-      user_name: this.adminForm.get('user_name')!.value || this.user.user_name,
-      firstname: this.adminForm.get('firstname')!.value || this.user.firstname,
-      lastname: this.adminForm.get('lastname')!.value || this.user.lastname,
-      password: this.adminForm.get('password')!.value || this.user.password,
-      Gender: this.adminForm.get('Gender')!.value || this.user.Gender,
-      profile_picture:
-        this.adminForm.get('profile_picture')!.value ||
-        this.user.profile_picture,
-    };
+    const profile = this.adminForm.value;
+    const data = profile
+    console.log(data);
     const token = localStorage.getItem('token');
-    fetch(this.api + 'update', {
+    fetch(`${this.api}update`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        authorization: token!,
+        authorization: `${token}` || '',
       },
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {
+        
+        // const new_data = {
+        //   _id: data._id,
+        //   user_name : data.user_name,
+        //   firstname : data.firstname,
+        //   lastname : data.lastname,
+        //   Gender : data.gender,
+        //   profile_picture : data.profile_picture
+        // }
+
+        // const json = JSON.stringify(new_data);
+        // localStorage.setItem('data', json);
         console.log(data);
         Swal.fire('Edit success!', 'success').then(() => {
           this.router.navigate(['/']);
