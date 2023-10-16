@@ -117,8 +117,8 @@ export class SingupComponent {
         console.error(error);
         // Handle errors, for example, display an error message
       });
-       // go to login page
-       this.router.navigate(['/login']);
+       // go to menu page
+       this.router.navigate(['/menu']);
   }
   data: any[] = [];
   getGender() {
